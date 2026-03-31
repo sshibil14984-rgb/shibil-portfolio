@@ -1,13 +1,14 @@
 import { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = "https://shibill.in";
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: `${siteConfig.siteUrl}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

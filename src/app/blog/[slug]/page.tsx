@@ -4,9 +4,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { Article } from "schema-dts";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { longDateFormatter } from "@/lib/site";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -52,32 +49,26 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   };
 
   return (
-    <article className="min-h-screen px-4 pb-24 pt-32 sm:px-6">
+    <article className="min-h-screen bg-black pt-32 pb-24">
       <JsonLd schema={{ "@context": "https://schema.org", ...articleSchema }} />
-      <div className="mx-auto max-w-3xl">
-        <Link href="/blog" className="secondary-button mb-8 inline-flex text-sm">
-          <ArrowLeft className="h-4 w-4" />
-          Back to Blog
-        </Link>
-
-        <header className="glass-panel subtle-ring mb-10 rounded-[2rem] p-8 sm:p-10">
-          <div className="mb-6 flex flex-wrap items-center gap-3">
-            <span className="pill px-3 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">
-              {post.meta.category}
-            </span>
-            <span className="text-sm text-[color:var(--muted-foreground)]">
-              {longDateFormatter.format(new Date(post.meta.date))}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <header className="mb-12 border-b border-zinc-800 pb-8">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-blue-400 font-mono tracking-wide text-sm">{post.meta.category}</span>
+            <span className="text-zinc-600">•</span>
+            <span className="text-zinc-500 text-sm">
+              {new Date(post.meta.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </span>
           </div>
-          <h1 className="font-display text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
             {post.meta.title}
           </h1>
-          <p className="mt-5 text-lg leading-8 text-[color:var(--muted-foreground)]">
+          <p className="text-xl text-gray-400">
             {post.meta.description}
           </p>
         </header>
         
-        <div className="article-content glass-panel subtle-ring rounded-[2rem] px-6 py-8 sm:px-10 sm:py-10">
+        <div className="prose prose-invert prose-blue max-w-none">
           <MDXRemote source={post.content} />
         </div>
       </div>

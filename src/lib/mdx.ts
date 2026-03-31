@@ -36,7 +36,7 @@ export const getPostBySlug = (slug: string): Post | undefined => {
       },
       content,
     };
-  } catch {
+  } catch (error) {
     return undefined;
   }
 };

@@ -1,7 +1,6 @@
 import { getAllPosts } from "@/lib/mdx";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { longDateFormatter } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog | SEO & Performance Marketing Insights",
@@ -12,40 +11,37 @@ export default function BlogIndex() {
   const posts = getAllPosts();
 
   return (
-    <main className="min-h-screen px-4 pb-24 pt-32 sm:px-6">
-      <div className="mx-auto max-w-4xl">
-        <span className="eyebrow">Blog</span>
-        <h1 className="mt-6 font-display text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">
-          Growth insights for SEO, paid media, and conversion work.
+    <main className="min-h-screen bg-black pt-32 pb-24">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+          Growth <span className="text-blue-500">Insights</span>
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-[color:var(--muted-foreground)]">
-          Tactical guides, channel breakdowns, and real-world strategy notes focused on practical business outcomes.
+        <p className="text-gray-400 text-lg mb-16">
+          Tactical guides, case studies, and modern strategies to scale your business online.
         </p>
 
         {posts.length === 0 ? (
-          <p className="glass-panel subtle-ring mt-12 rounded-[1.8rem] p-8 text-[color:var(--muted-foreground)]">
-            More insights coming soon.
-          </p>
+          <p className="text-gray-500 italic">More insights coming soon...</p>
         ) : (
-          <div className="mt-12 grid gap-6">
+          <div className="grid gap-8">
             {posts.map((post) => (
               <Link 
                 key={post.slug} 
                 href={`/blog/${post.slug}`}
-                className="glass-panel subtle-ring group block rounded-[1.8rem] p-7 sm:p-8"
+                className="group block p-8 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition"
               >
-                <div className="mb-4 flex flex-wrap items-center gap-3">
-                  <span className="pill px-3 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-blue-400 text-sm font-mono tracking-wide px-3 py-1 bg-blue-500/10 rounded-full">
                     {post.category}
                   </span>
-                  <span className="text-sm text-[color:var(--muted-foreground)]">
-                    {longDateFormatter.format(new Date(post.date))}
+                  <span className="text-zinc-500 text-sm">
+                    {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </span>
                 </div>
-                <h2 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white group-hover:text-cyan-200">
+                <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
                   {post.title}
                 </h2>
-                <p className="mt-3 text-sm leading-7 text-[color:var(--muted-foreground)]">
+                <p className="text-gray-400">
                   {post.description}
                 </p>
               </Link>

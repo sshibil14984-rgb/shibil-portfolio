@@ -1,161 +1,96 @@
-import Image from "next/image";
-import { BarChart3, Download, MessageCircle, Phone, Search, Target } from "lucide-react";
-import { siteConfig } from "@/lib/site";
+"use client";
 
-const focusAreas = [
-  "SEO systems that improve discoverability",
-  "Google and Meta campaigns with clearer intent matching",
-  "Landing pages built to convert qualified traffic",
-];
-
-const serviceLenses = [
-  {
-    title: "Search Visibility",
-    copy: "Technical SEO, keyword research, and content direction grounded in business goals.",
-    icon: Search,
-    accent: "text-cyan-300",
-    bg: "bg-cyan-400/12",
-  },
-  {
-    title: "Paid Acquisition",
-    copy: "Meta and Google Ads execution that prioritizes efficient spend and lead quality.",
-    icon: Target,
-    accent: "text-emerald-300",
-    bg: "bg-emerald-400/12",
-  },
-  {
-    title: "Conversion Focus",
-    copy: "Funnel refinement and offer positioning designed to turn traffic into opportunities.",
-    icon: BarChart3,
-    accent: "text-amber-300",
-    bg: "bg-amber-400/12",
-  },
-];
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight, BarChart3, Target, Search, ShoppingCart, Phone, Download, MessageCircle } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden px-4 pb-20 pt-32 sm:px-6 lg:pb-24 lg:pt-36">
-      <div className="hero-glow left-[-8rem] top-10 h-72 w-72 bg-cyan-400/18" />
-      <div className="hero-glow bottom-0 right-[-7rem] h-72 w-72 bg-blue-500/16" />
+    <section className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0,rgba(0,0,0,0)_100%)] z-0" />
 
-      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-        <div className="relative z-10">
-          <span className="eyebrow">Independent Growth Partner</span>
-          <p className="mt-6 text-sm font-medium uppercase tracking-[0.32em] text-[color:var(--muted-foreground)]">
-            Kerala-based digital marketer for brands that need sharper execution
-          </p>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium tracking-wide mb-4 border border-blue-500/20 uppercase tracking-widest">
+            Shibil S
+          </span>
+          <h2 className="text-xl md:text-2xl font-medium text-gray-400 mb-6 font-mono">
+            Digital Marketing Executive
+          </h2>
+        </motion.div>
 
-          <h1 className="mt-6 max-w-4xl text-balance font-display text-5xl font-semibold tracking-[-0.06em] text-white sm:text-6xl lg:text-7xl">
-            Turn search, ads, and landing pages into a
-            <span className="block bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent">
-              reliable revenue engine.
-            </span>
-          </h1>
+        <motion.h1 
+          className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          I Help Businesses Turn Ads <br className="hidden md:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-600">
+            Into Predictable Revenue
+          </span>
+        </motion.h1>
 
-          <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-[color:var(--muted-foreground)] sm:text-xl">
-            I help businesses improve online visibility, acquire better leads, and tighten conversion paths with disciplined SEO, SEM, SMM, and CRO execution.
-          </p>
+        <motion.p 
+          className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM. I create data-driven campaigns that improve online visibility, generate qualified leads, and increase ROI.
+        </motion.p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={siteConfig.phoneLink} className="primary-button">
-              Direct Call
-              <Phone className="h-5 w-5" />
-            </a>
-            <a
-              href={siteConfig.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-button"
-            >
-              WhatsApp Chat
-              <MessageCircle className="h-5 w-5" />
-            </a>
-            <a href={siteConfig.resumePath} download className="secondary-button">
-              Download CV
-              <Download className="h-5 w-5" />
-            </a>
+        <motion.div 
+          className="flex flex-col md:flex-row items-center justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <a 
+            href="tel:+918590658417" 
+            className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          >
+            Direct Call
+            <Phone className="w-5 h-5" />
+          </a>
+          <a 
+            href="https://wa.me/918590658417" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#1fae53] transition-colors"
+          >
+            WhatsApp Chat
+            <MessageCircle className="w-5 h-5" />
+          </a>
+          <a 
+            href="/SHIBIL resume.pdf" 
+            download
+            className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            Download CV
+            <Download className="w-5 h-5" />
+          </a>
+        </motion.div>
+
+        <motion.div 
+          className="mt-20 pt-10 border-t border-white/5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+        >
+          <p className="text-sm text-gray-500 font-medium tracking-widest uppercase mb-8">Expertise In</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+            <div className="flex items-center gap-2"><Target className="w-5 h-5" /> <span className="font-semibold text-lg">Search Engine Optimization</span></div>
+            <div className="flex items-center gap-2"><BarChart3 className="w-5 h-5" /> <span className="font-semibold text-lg">Google Ads (PPC)</span></div>
+            <div className="flex items-center gap-2"><Search className="w-5 h-5" /> <span className="font-semibold text-lg">Social Media Marketing</span></div>
+            <div className="flex items-center gap-2"><ShoppingCart className="w-5 h-5" /> <span className="font-semibold text-lg">E-Commerce Management</span></div>
           </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            {focusAreas.map((item) => (
-              <span key={item} className="pill">
-                {item}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {serviceLenses.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div key={item.title} className="soft-panel subtle-ring rounded-[1.4rem] p-5">
-                  <div className={`inline-flex rounded-2xl p-3 ${item.bg}`}>
-                    <Icon className={`h-5 w-5 ${item.accent}`} />
-                  </div>
-                  <h2 className="mt-4 font-display text-xl font-semibold tracking-[-0.04em] text-white">
-                    {item.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-7 text-[color:var(--muted-foreground)]">
-                    {item.copy}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="relative lg:pl-4">
-          <div className="glass-panel subtle-ring rounded-[2rem] p-5 sm:p-6">
-            <div className="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-slate-950/70">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(104,225,253,0.18),transparent_45%)]" />
-              <div className="relative aspect-[4/5]">
-                <Image
-                  src="/shibil-profile.png"
-                  alt="Shibil S portrait"
-                  fill
-                  priority
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
-              </div>
-
-              <div className="absolute inset-x-0 bottom-0 border-t border-white/10 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent p-5">
-                <p className="text-sm uppercase tracking-[0.28em] text-cyan-200">Shibil S</p>
-                <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.05em] text-white">
-                  Digital marketing execution with a conversion mindset
-                </h2>
-                <p className="mt-3 max-w-md text-sm leading-7 text-slate-300">
-                  Based in Kerala and working across SEO strategy, ad account optimization, and high-intent landing page improvements.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <div className="soft-panel rounded-[1.4rem] p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--muted-foreground)]">
-                  Best Fit
-                </p>
-                <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-200">
-                  <li>SEO cleanup and visibility improvement</li>
-                  <li>Meta and Google Ads optimization</li>
-                  <li>Lead generation landing page refinement</li>
-                </ul>
-              </div>
-
-              <div className="soft-panel rounded-[1.4rem] p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--muted-foreground)]">
-                  Working Style
-                </p>
-                <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-200">
-                  <li>Research-led planning before execution</li>
-                  <li>Clear reporting and practical next steps</li>
-                  <li>Fast iteration on what actually converts</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

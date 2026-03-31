@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import JsonLd from "@/components/seo/JsonLd";
 import { Person, WithContext } from "schema-dts";
-import { siteConfig } from "@/lib/site";
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const baseUrl = process.env.NODE_ENV === "production" ? "https://shibill.in" : "http://localhost:3000";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.siteUrl),
+  metadataBase: new URL(baseUrl),
   title: {
-    default: `${siteConfig.name} | ${siteConfig.title}`,
+    default: "Shibil S | Digital Marketing Executive & SEO Specialist",
     template: "%s | Shibil S"
   },
-  description: siteConfig.description,
+  description: "Results-driven Digital Marketing Executive with a strong background in SEO, SEM, SMM, and Email Marketing. I help businesses generate leads and increase ROI through data-driven campaigns.",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: siteConfig.siteUrl,
+    url: baseUrl,
     title: "Shibil S - Digital Marketing Strategist",
     description: "Scale your revenue with predictable, data-driven performance marketing systems.",
     siteName: "Shibil S Portfolio"
@@ -30,18 +32,18 @@ export const metadata: Metadata = {
     description: "Scale your revenue with predictable, data-driven performance marketing systems.",
   },
   alternates: {
-    canonical: siteConfig.siteUrl,
+    canonical: baseUrl,
   }
 };
 
 const personSchema: WithContext<Person> = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: siteConfig.name,
+  name: "Shibil S",
   jobTitle: "Digital Marketing Executive",
-  url: siteConfig.siteUrl,
+  url: baseUrl,
   sameAs: [
-    siteConfig.linkedinLink
+    "https://linkedin.com/in/shibil-s-433000370"
   ],
   knowsAbout: ["Search Engine Optimization (SEO)", "Search Engine Marketing (SEM)", "Social Media Marketing (SMM)", "Email Marketing", "Web Designing", "Meta Ads", "E-commerce Product Management", "Conversion Rate Optimization (CRO)", "Affiliate & Influencer Marketing"]
 };
@@ -56,11 +58,11 @@ export default function RootLayout({
       <head>
         <JsonLd schema={personSchema} />
       </head>
-      <body className="page-shell font-sans antialiased text-white">
+      <body className={`${inter.variable} font-sans antialiased bg-black text-white`}>
         <Navbar />
         {children}
         <Footer />
-        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+        <GoogleAnalytics gaId="G-XXXXXXX" />
       </body>
     </html>
   );

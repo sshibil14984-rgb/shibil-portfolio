@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import { Service } from "schema-dts";
-import { programmaticCities, programmaticServices, siteConfig } from "@/lib/site";
+
+const targetCities = ["mumbai", "kerala", "dubai", "london", "bangalore"];
+const targetServices = ["seo-expert", "meta-ads-consultant", "ecommerce-growth-partner"];
 
 // Generate all combinations at build time
 export async function generateStaticParams() {
   const paths: { slug: string }[] = [];
   
-  programmaticServices.forEach((service) => {
-    programmaticCities.forEach((city) => {
+  targetServices.forEach((service) => {
+    targetCities.forEach((city) => {
       paths.push({
         slug: `${service}-in-${city}`,
       });
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `Hire the Best ${parsed.serviceName} in ${parsed.cityName} | Shibil S`,
     description: `Looking for top-tier ${parsed.serviceName} services in ${parsed.cityName}? I build predictable revenue funnels for local and e-commerce businesses.`,
     alternates: {
-      canonical: `${siteConfig.siteUrl}/services/${slug}`,
+      canonical: `https://shibill.in/services/${slug}`,
     }
   };
 }
@@ -70,44 +72,37 @@ export default async function ProgrammaticServicePage({ params }: { params: Prom
   };
 
   return (
-    <main className="min-h-screen px-4 pb-24 pt-32 sm:px-6">
+    <main className="min-h-screen bg-black pt-32 pb-24">
       <JsonLd schema={{ "@context": "https://schema.org", ...serviceSchema }} />
-      <div className="mx-auto max-w-4xl">
-        <span className="eyebrow">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <span className="text-blue-400 font-mono tracking-wide px-4 py-2 bg-blue-500/10 rounded-full text-sm border border-blue-500/20 mb-8 inline-block">
           Serving {cityName}
         </span>
         
-        <h1 className="mt-6 font-display text-4xl font-semibold tracking-[-0.06em] text-white sm:text-6xl">
-          The{" "}
-          <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
-            {serviceName}
-          </span>{" "}
-          partner
-          <br />
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-8">
+          The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-600">#1 {serviceName}</span> <br/> 
           in {cityName}
         </h1>
         
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-[color:var(--muted-foreground)]">
+        <p className="text-xl text-gray-400 max-w-2xl mb-12">
           Stop guessing with your marketing budget. I build high-converting 
           {serviceName.toLowerCase() === 'seo expert' ? ' organic growth engines' : ' paid acquisition systems'} 
           for businesses in {cityName} that scale revenue.
         </p>
 
-        <div className="glass-panel subtle-ring mt-10 rounded-[2rem] p-8">
-          <h2 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white">
-            Why partner with me in {cityName}?
-          </h2>
-          <ul className="mt-6 space-y-4 text-sm leading-7 text-slate-200">
+        <div className="p-8 bg-zinc-900 border border-zinc-800 rounded-3xl">
+          <h2 className="text-2xl font-bold mb-4 text-white">Why partner with me in {cityName}?</h2>
+          <ul className="space-y-4 text-zinc-400">
             <li className="flex gap-3 items-start">
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
+              <span className="text-blue-500 mt-1">✓</span>
               Location-specific market research tailored to {cityName} consumer behaviors.
             </li>
             <li className="flex gap-3 items-start">
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
+              <span className="text-blue-500 mt-1">✓</span>
               Clear, data-driven reporting so you always know your exact ROI.
             </li>
             <li className="flex gap-3 items-start">
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
+              <span className="text-blue-500 mt-1">✓</span>
               Dedicated {serviceName.toLowerCase()} execution focused exclusively on bottom-line revenue.
             </li>
           </ul>

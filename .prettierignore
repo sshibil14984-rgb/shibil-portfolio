@@ -1,0 +1,8 @@
+.next
+node_modules
+dist
+build
+drizzle
+.env*
+*.local
+public

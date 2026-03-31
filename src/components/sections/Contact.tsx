@@ -1,291 +1,156 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { LoaderCircle, Mail, MapPin, MessageCircle, Phone, Send, UserRound } from "lucide-react";
-import SectionIntro from "@/components/sections/SectionIntro";
-import { siteConfig } from "@/lib/site";
-
-type FormStatus =
-  | { type: "idle"; message: string }
-  | { type: "success"; message: string }
-  | { type: "error"; message: string };
-
-const contactMethods = [
-  {
-    label: "Email",
-    value: siteConfig.email,
-    href: `mailto:${siteConfig.email}`,
-    icon: Mail,
-    accent: "text-cyan-300",
-    surface: "bg-cyan-400/12",
-  },
-  {
-    label: "Phone",
-    value: siteConfig.phoneDisplay,
-    href: siteConfig.phoneLink,
-    icon: Phone,
-    accent: "text-emerald-300",
-    surface: "bg-emerald-400/12",
-  },
-  {
-    label: "WhatsApp",
-    value: "Quick chat for fast questions",
-    href: siteConfig.whatsappLink,
-    icon: MessageCircle,
-    accent: "text-amber-300",
-    surface: "bg-amber-400/12",
-  },
-  {
-    label: "Location",
-    value: siteConfig.location,
-    href: undefined,
-    icon: MapPin,
-    accent: "text-rose-300",
-    surface: "bg-rose-400/12",
-  },
-];
+import { motion } from "framer-motion";
+import { Mail, User, MapPin, Send, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 export default function Contact() {
   const [pending, setPending] = useState(false);
-  const [status, setStatus] = useState<FormStatus>({ type: "idle", message: "" });
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setPending(true);
-    setStatus({ type: "idle", message: "" });
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-
-    const payload = {
-      name: String(formData.get("name") || "").trim(),
-      email: String(formData.get("email") || "").trim(),
-      company: String(formData.get("company") || "").trim(),
-      message: String(formData.get("message") || "").trim(),
-      website: String(formData.get("website") || "").trim(),
-    };
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = (await response.json().catch(() => null)) as { error?: string } | null;
-
-      if (!response.ok) {
-        throw new Error(result?.error || "The form could not be delivered right now. Please email or WhatsApp me instead.");
-      }
-
-      form.reset();
-      setStatus({
-        type: "success",
-        message: "Your message was sent successfully. I’ll get back to you as soon as possible.",
-      });
-    } catch (error) {
-      setStatus({
-        type: "error",
-        message:
-          error instanceof Error
-            ? error.message
-            : "Something went wrong while sending your message. Please use email or WhatsApp instead.",
-      });
-    } finally {
+    // Simulate API call for now; since we just scaffolded
+    setTimeout(() => {
       setPending(false);
-    }
+      setSuccess(true);
+    }, 1500);
   };
 
   return (
-    <section id="contact" className="section-shell pb-24">
-      <div className="hero-glow right-[-7rem] top-10 h-72 w-72 bg-cyan-400/12" />
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr]">
-        <div>
-          <SectionIntro
-            eyebrow="Contact"
-            title="Ready to improve visibility, lead quality, or campaign performance?"
-            description="If you already know the bottleneck, send a quick note. If you’re not sure where the leak is, I can help identify the next highest-value fix."
-          />
+    <section id="contact" className="py-24 bg-black relative overflow-hidden">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {contactMethods.map((method) => {
-              const Icon = method.icon;
-              const content = (
-                <div className="soft-panel subtle-ring flex h-full items-start gap-4 rounded-[1.6rem] p-5">
-                  <div className={`rounded-2xl p-3 ${method.surface}`}>
-                    <Icon className={`h-5 w-5 ${method.accent}`} />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          
+          {/* Left: Info */}
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Let's build predictable revenue.</h2>
+            <p className="text-gray-400 text-lg mb-12 max-w-md">
+              Whether you need to scale your ad spend profitably or build a robust SEO foundation, I'm ready to help. Reach out to schedule a strategy call.
+            </p>
+
+            <div className="space-y-6">
+              <a href="mailto:sshibil14954@gmail.com" className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group">
+                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
+                  <Mail className="w-5 h-5 text-blue-400" />
+                </div>
+                <div>
+                  <p className="font-medium">Email</p>
+                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">sshibil14954@gmail.com</p>
+                </div>
+              </a>
+
+              <a href="https://linkedin.com/in/shibil-s-433000370" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group">
+                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
+                  <User className="w-5 h-5 text-blue-400" />
+                </div>
+                <div>
+                  <p className="font-medium">LinkedIn</p>
+                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">Connect professionally</p>
+                </div>
+              </a>
+
+              <a href="tel:+918590658417" className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group">
+                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
+                  <svg className="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium">Phone</p>
+                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">+91 8590658417</p>
+                </div>
+              </a>
+
+              <a href="https://wa.me/918590658417" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group">
+                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
+                  <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                </div>
+                <div>
+                  <p className="font-medium">WhatsApp</p>
+                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">Chat with me</p>
+                </div>
+              </a>
+
+              <div className="flex items-center gap-4 text-zinc-300 group">
+                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-blue-400" />
+                </div>
+                <div>
+                  <p className="font-medium">Location</p>
+                  <p className="text-sm text-zinc-500">Nilambur, Malappuram, Kerala-679333</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Form */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="p-8 md:p-10 bg-zinc-900 border border-zinc-800 rounded-3xl"
+          >
+            <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+            
+            {success ? (
+              <div className="h-[300px] flex flex-col items-center justify-center text-center space-y-4">
+                <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-4">
+                  <Send className="w-8 h-8" />
+                </div>
+                <h4 className="text-2xl font-bold">Message sent!</h4>
+                <p className="text-zinc-400">I'll get back to you within 24 hours.</p>
+                <button 
+                  onClick={() => setSuccess(false)}
+                  className="mt-4 px-6 py-2 text-sm text-white bg-zinc-800 rounded-full hover:bg-zinc-700 transition"
+                >
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium text-zinc-400">Name</label>
+                    <input 
+                      id="name" name="name" type="text" required
+                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      placeholder="John Doe"
+                    />
                   </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--muted-foreground)]">
-                      {method.label}
-                    </p>
-                    <p className="mt-3 text-sm leading-7 text-slate-100">{method.value}</p>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium text-zinc-400">Email</label>
+                    <input 
+                      id="email" name="email" type="email" required
+                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      placeholder="john@company.com"
+                    />
                   </div>
                 </div>
-              );
+                
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium text-zinc-400">Message</label>
+                  <textarea 
+                    id="message" name="message" required rows={4}
+                    className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 resize-none"
+                    placeholder="Tell me about your business goals..."
+                  ></textarea>
+                </div>
 
-              if (!method.href) {
-                return <div key={method.label}>{content}</div>;
-              }
-
-              return (
-                <a
-                  key={method.label}
-                  href={method.href}
-                  target={method.href.startsWith("http") ? "_blank" : undefined}
-                  rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="block"
+                <button 
+                  type="submit" disabled={pending}
+                  className="w-full py-4 mt-4 bg-white text-black font-bold rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  {content}
-                </a>
-              );
-            })}
-          </div>
+                  {pending ? "Sending..." : "Send Message"}
+                </button>
+              </form>
+            )}
+          </motion.div>
 
-          <div className="glass-panel subtle-ring mt-6 rounded-[1.8rem] p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--muted-foreground)]">
-              What to include
-            </p>
-            <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-200">
-              <li>The channel or problem you want to improve</li>
-              <li>Your business type, market, or target location</li>
-              <li>What success should look like over the next few months</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="glass-panel subtle-ring rounded-[2rem] p-6 sm:p-8">
-          <div className="flex items-center gap-3">
-            <div className="rounded-2xl bg-cyan-400/12 p-3 text-cyan-300">
-              <Send className="h-5 w-5" />
-            </div>
-            <div>
-              <h3 className="font-display text-2xl font-semibold tracking-[-0.04em] text-white">
-                Send a message
-              </h3>
-              <p className="mt-1 text-sm text-[color:var(--muted-foreground)]">
-                This form uses real validation and only confirms once delivery succeeds.
-              </p>
-            </div>
-          </div>
-
-          <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-slate-200">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  placeholder="Your name"
-                  className="input-field"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-slate-200">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                  className="input-field"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="company" className="text-sm font-medium text-slate-200">
-                Company or brand
-              </label>
-              <div className="relative">
-                <UserRound className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[color:var(--muted-foreground)]" />
-                <input
-                  id="company"
-                  name="company"
-                  type="text"
-                  placeholder="Optional"
-                  className="input-field pl-11"
-                />
-              </div>
-            </div>
-
-            <div className="hidden">
-              <label htmlFor="website">Website</label>
-              <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-slate-200">
-                What do you need help with?
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={6}
-                placeholder="Share your goals, current challenges, and what you want to improve."
-                className="input-field resize-none"
-              />
-            </div>
-
-            {status.type !== "idle" ? (
-              <div
-                className={`rounded-[1.2rem] border px-4 py-3 text-sm leading-6 ${
-                  status.type === "success"
-                    ? "border-emerald-300/20 bg-emerald-400/10 text-emerald-100"
-                    : "border-rose-300/20 bg-rose-400/10 text-rose-100"
-                }`}
-                role="status"
-                aria-live="polite"
-              >
-                {status.message}
-              </div>
-            ) : null}
-
-            <button
-              type="submit"
-              disabled={pending}
-              className="primary-button w-full disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              {pending ? (
-                <>
-                  <LoaderCircle className="h-5 w-5 animate-spin" />
-                  Sending message...
-                </>
-              ) : (
-                <>
-                  Send message
-                  <Send className="h-5 w-5" />
-                </>
-              )}
-            </button>
-
-            <p className="text-sm leading-6 text-[color:var(--muted-foreground)]">
-              If the form is temporarily unavailable, the fastest fallback is{" "}
-              <a href={`mailto:${siteConfig.email}`} className="text-cyan-200 underline underline-offset-4">
-                email
-              </a>{" "}
-              or{" "}
-              <a
-                href={siteConfig.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-200 underline underline-offset-4"
-              >
-                WhatsApp
-              </a>
-              .
-            </p>
-          </form>
         </div>
       </div>
     </section>

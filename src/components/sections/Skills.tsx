@@ -1,56 +1,63 @@
-import SectionIntro from "@/components/sections/SectionIntro";
+"use client";
+
+import { motion } from "framer-motion";
 
 const skillsGroup = [
   {
     category: "Paid Advertising",
-    skills: ["Meta Ads Manager", "Google Ads", "SEM", "Creative Testing", "Conversion Tracking"],
+    skills: ["Meta Ads Manager", "Google Ads (PPC)", "SEM", "A/B Creative Testing", "Conversion Tracking"]
   },
   {
     category: "SEO & Content",
-    skills: ["Technical SEO", "On-page SEO", "Off-page SEO", "Keyword Research", "SEO Audits", "Sitemaps"],
+    skills: ["Technical SEO", "On-page SEO", "Off-page SEO", "Keyword Research", "SEO Audits", "Sitemaps"]
   },
   {
     category: "Marketing & Growth",
-    skills: ["Social Media Marketing", "Email Marketing", "CRO", "Affiliate Marketing", "Influencer Marketing"],
+    skills: ["Social Media Marketing", "Email Marketing", "CRO", "Affiliate Marketing", "Influencer Marketing"]
   },
   {
     category: "E-Commerce & Tools",
-    skills: ["Amazon Management", "Shopify", "Google Analytics", "Product Listing Support", "Web Designing"],
-  },
+    skills: ["Amazon Management", "Shopify", "Online Selling", "Google Analytics", "Excel (Data Entry)", "Web Designing"]
+  }
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-shell">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionIntro
-          eyebrow="Capabilities"
-          title="Core skills that support channel strategy and day-to-day execution."
-          description="The toolkit spans paid acquisition, SEO operations, reporting, and the practical work needed to move prospects from attention to action."
-          align="center"
-        />
+    <section id="skills" className="py-24 bg-zinc-950 border-y border-zinc-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="mb-16 md:text-center">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Core Competencies</h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            A comprehensive stack of tools and methodologies leveraged to scale businesses effectively.
+          </p>
+        </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {skillsGroup.map((group) => (
-            <article key={group.category} className="soft-panel subtle-ring rounded-[1.7rem] p-6">
-              <div className="flex items-center gap-3">
-                <span className="h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(104,225,253,0.7)]" />
-                <h3 className="font-display text-xl font-semibold tracking-[-0.04em] text-white">
-                  {group.category}
-                </h3>
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-slate-200"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillsGroup.map((group, groupIdx) => (
+            <motion.div
+              key={groupIdx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: groupIdx * 0.1 }}
+              className="p-6 bg-black border border-zinc-800 rounded-2xl"
+            >
+              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                {group.category}
+              </h3>
+              
+              <div className="flex flex-wrap gap-2">
+                {group.skills.map((skill, skillIdx) => (
+                  <span 
+                    key={skillIdx} 
+                    className="px-3 py-1.5 bg-zinc-900 border border-zinc-800 text-zinc-300 text-sm rounded-lg hover:border-zinc-700 hover:text-white transition-colors cursor-default"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </article>
+            </motion.div>
           ))}
         </div>
       </div>
