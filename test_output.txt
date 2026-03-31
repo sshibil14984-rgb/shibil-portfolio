@@ -1,0 +1,354 @@
+
+[1m[46m RUN [49m[22m [36mv4.1.2 [39m[90mD:/shilbil-portfolio-c1[39m
+
+ [31mΓ¥»[39m src/components/sections/__tests__/Hero.test.tsx [2m([22m[2m1 test[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 182[2mms[22m[39m
+[31m   [31m├ù[31m Hero renders correctly[39m[32m 175[2mms[22m[39m
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Failed Tests 1 ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+ FAIL  src/components/sections/__tests__/Hero.test.tsx > Hero renders correctly
+TestingLibraryElementError: Found multiple elements with the text: /Digital Marketing Executive/i
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<h2
+  class="text-xl md:text-2xl font-medium text-gray-400 mb-6 font-mono"
+>
+  Digital Marketing Executive
+</h2>
+
+Ignored nodes: comments, script, style
+<p
+  animate="[object Object]"
+  class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto"
+  initial="[object Object]"
+  transition="[object Object]"
+>
+  Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM. I create data-driven campaigns that improve online visibility, generate qualified leads, and increase ROI.
+</p>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      class="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0,rgba(0,0,0,0)_100%)] z-0"
+      />
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center"
+      >
+        <div
+          animate="[object Object]"
+          initial="[object Object]"
+          transition="[object Object]"
+        >
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium tracking-wide mb-4 border border-blue-500/20 uppercase tracking-widest"
+          >
+            Shibil S
+          </span>
+          <h2
+            class="text-xl md:text-2xl font-medium text-gray-400 mb-6 font-mono"
+          >
+            Digital Marketing Executive
+          </h2>
+        </div>
+        <h1
+          animate="[object Object]"
+          class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6"
+          initial="[object Object]"
+          transition="[object Object]"
+        >
+          I Help Businesses Turn Ads 
+          <br
+            class="hidden md:block"
+          />
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-600"
+          >
+            Into Predictable Revenue
+          </span>
+        </h1>
+        <p
+          animate="[object Object]"
+          class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto"
+          initial="[object Object]"
+          transition="[object Object]"
+        >
+          Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM. I create data-driven campaigns that improve online visibility, generate qualified leads, and increase ROI.
+        </p>
+        <div
+          animate="[object Object]"
+          class="flex flex-col md:flex-row items-center justify-center gap-4"
+          initial="[object Object]"
+          transition="[object Object]"
+        >
+          <a
+            class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+            href="tel:+918590658417"
+          >
+            Direct Call
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-phone w-5 h-5"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+              />
+            </svg>
+          </a>
+          <a
+            class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#1fae53] transition-colors"
+            href="https://wa.me/918590658417"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            WhatsApp Chat
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-message-circle w-5 h-5"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"
+              />
+            </svg>
+          </a>
+          <a
+            class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+            download=""
+            href="/SHIBIL resume.pdf"
+          >
+            Download CV
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-download w-5 h-5"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 15V3"
+              />
+              <path
+                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+              />
+              <path
+                d="m7 10 5 5 5-5"
+              />
+            </svg>
+          </a>
+        </div>
+        <div
+          animate="[object Object]"
+          class="mt-20 pt-10 border-t border-white/5"
+          initial="[object Object]"
+          transition="[object Object]"
+        >
+          <p
+            class="text-sm text-gray-500 font-medium tracking-widest uppercase mb-8"
+          >
+            Expertise In
+          </p>
+          <div
+            class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70"
+          >
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-target w-5 h-5"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="6"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="2"
+                />
+              </svg>
+               
+              <span
+                class="font-semibold text-lg"
+              >
+                Search Engine Optimization
+              </span>
+            </div>
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-chart-column w-5 h-5"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 3v16a2 2 0 0 0 2 2h16"
+                />
+                <path
+                  d="M18 17V9"
+                />
+                <path
+                  d="M13 17V5"
+                />
+                <path
+                  d="M8 17v-3"
+                />
+              </svg>
+               
+              <span
+                class="font-semibold text-lg"
+              >
+                Google Ads (PPC)
+              </span>
+            </div>
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-search w-5 h-5"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m21 21-4.34-4.34"
+                />
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8"
+                />
+              </svg>
+               
+              <span
+                class="font-semibold text-lg"
+              >
+                Social Media Marketing
+              </span>
+            </div>
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-shopping-cart w-5 h-5"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="21"
+                  r="1"
+                />
+                <circle
+                  cx="19"
+                  cy="21"
+                  r="1"
+                />
+                <path
+                  d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                />
+              </svg>
+               
+              <span
+                class="font-semibold text-lg"
+              >
+                E-Commerce Management
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ Γ¥» getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ Γ¥» node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ Γ¥» node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/sections/__tests__/Hero.test.tsx:21:17
+     19|
+     20|   // Check if the title exists
+     21|   expect(screen.getByText(/Digital Marketing Executive/i)).toBeInTheDoΓÇª
+       |                 ^
+     22|
+     23|   // Check if the main heading exists
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[1/1]ΓÄ»
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m   Start at [22m 14:56:02
+[2m   Duration [22m 5.76s[2m (transform 175ms, setup 294ms, import 816ms, tests 182ms, environment 3.66s)[22m
+

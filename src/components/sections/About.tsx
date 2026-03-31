@@ -11,7 +11,6 @@ export default function About() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
           {/* Left: Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -22,13 +21,22 @@ export default function About() {
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">About Me</h2>
             <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
               <p>
-                As a Digital Marketing Executive with a background in SEO, SEM, and SMM, I specialize in creating data-driven campaigns that provide measurable results. My expertise lies in helping brands enhance their online visibility and ROI through research-backed strategies.
+                As a Digital Marketing Executive with a background in SEO, SEM, and SMM, I
+                specialize in creating data-driven campaigns that provide measurable results. My
+                expertise lies in helping brands enhance their online visibility and ROI through
+                research-backed strategies.
               </p>
               <p>
-                From coordinating complex SEO strategies to executing targeted Meta and Google Ads, my focus is always on continuous improvement and staying updated with the latest digital trends. I build user-friendly websites that aren't just visually appealing but optimized for real-world conversions.
+                From coordinating complex SEO strategies to executing targeted Meta and Google Ads,
+                my focus is always on continuous improvement and staying updated with the latest
+                digital trends. I build user-friendly websites that aren't just visually appealing
+                but optimized for real-world conversions.
               </p>
               <p>
-                Currently, I leverage tools like Google Analytics and keyword analysis to help businesses in Kerala and beyond grow their digital footprint. When I'm not optimizing campaigns, I'm exploring new ways to bridge the gap between business goals and user needs.
+                Currently, I leverage tools like Google Analytics and keyword analysis to help
+                businesses in Kerala and beyond grow their digital footprint. When I'm not
+                optimizing campaigns, I'm exploring new ways to bridge the gap between business
+                goals and user needs.
               </p>
               <div className="pt-4 flex flex-col gap-3 font-mono text-sm uppercase tracking-wider text-blue-400">
                 <p>📍 Malappuram, Kerala, India</p>
@@ -55,7 +63,6 @@ export default function About() {
               priority
             />
           </motion.div>
-
         </div>
       </div>
     </section>

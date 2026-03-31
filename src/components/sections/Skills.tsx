@@ -5,20 +5,46 @@ import { motion } from "framer-motion";
 const skillsGroup = [
   {
     category: "Paid Advertising",
-    skills: ["Meta Ads Manager", "Google Ads (PPC)", "SEM", "A/B Creative Testing", "Conversion Tracking"]
+    skills: [
+      "Meta Ads Manager",
+      "Google Ads (PPC)",
+      "SEM",
+      "A/B Creative Testing",
+      "Conversion Tracking",
+    ],
   },
   {
     category: "SEO & Content",
-    skills: ["Technical SEO", "On-page SEO", "Off-page SEO", "Keyword Research", "SEO Audits", "Sitemaps"]
+    skills: [
+      "Technical SEO",
+      "On-page SEO",
+      "Off-page SEO",
+      "Keyword Research",
+      "SEO Audits",
+      "Sitemaps",
+    ],
   },
   {
     category: "Marketing & Growth",
-    skills: ["Social Media Marketing", "Email Marketing", "CRO", "Affiliate Marketing", "Influencer Marketing"]
+    skills: [
+      "Social Media Marketing",
+      "Email Marketing",
+      "CRO",
+      "Affiliate Marketing",
+      "Influencer Marketing",
+    ],
   },
   {
     category: "E-Commerce & Tools",
-    skills: ["Amazon Management", "Shopify", "Online Selling", "Google Analytics", "Excel (Data Entry)", "Web Designing"]
-  }
+    skills: [
+      "Amazon Management",
+      "Shopify",
+      "Online Selling",
+      "Google Analytics",
+      "Excel (Data Entry)",
+      "Web Designing",
+    ],
+  },
 ];
 
 export default function Skills() {
@@ -28,7 +54,8 @@ export default function Skills() {
         <div className="mb-16 md:text-center">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Core Competencies</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A comprehensive stack of tools and methodologies leveraged to scale businesses effectively.
+            A comprehensive stack of tools and methodologies leveraged to scale businesses
+            effectively.
           </p>
         </div>
 
@@ -46,11 +73,11 @@ export default function Skills() {
                 <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                 {group.category}
               </h3>
-              
+
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill, skillIdx) => (
-                  <span 
-                    key={skillIdx} 
+                  <span
+                    key={skillIdx}
                     className="px-3 py-1.5 bg-zinc-900 border border-zinc-800 text-zinc-300 text-sm rounded-lg hover:border-zinc-700 hover:text-white transition-colors cursor-default"
                   >
                     {skill}

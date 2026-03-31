@@ -10,19 +10,22 @@ export default async function AdminPage() {
     <div className="p-10 text-white min-h-screen bg-black">
       <h1 className="text-3xl font-bold mb-8">Admin Panel</h1>
 
-      <form action={createProject} className="mb-12 glass-panel p-6 rounded-2xl border border-white/10 max-w-xl">
+      <form
+        action={createProject}
+        className="mb-12 glass-panel p-6 rounded-2xl border border-white/10 max-w-xl"
+      >
         <h2 className="text-xl font-semibold mb-4">Add New Project</h2>
         <div className="flex flex-col gap-4">
-          <input 
-            name="title" 
-            placeholder="Project Title" 
-            required 
-            className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50" 
+          <input
+            name="title"
+            placeholder="Project Title"
+            required
+            className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           />
-          <textarea 
-            name="description" 
-            placeholder="Project Description" 
-            className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 min-h-[100px]" 
+          <textarea
+            name="description"
+            placeholder="Project Description"
+            className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 min-h-[100px]"
           />
           <button className="bg-white text-black font-bold px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors w-fit">
             Add Project
@@ -36,7 +39,10 @@ export default async function AdminPage() {
           <p className="text-zinc-500 italic">No projects found.</p>
         ) : (
           data.map((p) => (
-            <div key={p.id} className="border border-white/5 p-6 rounded-2xl bg-zinc-900/50 flex justify-between items-start gap-4">
+            <div
+              key={p.id}
+              className="border border-white/5 p-6 rounded-2xl bg-zinc-900/50 flex justify-between items-start gap-4"
+            >
               <div className="flex-1">
                 <h3 className="text-xl font-bold text-white mb-2">{p.title}</h3>
                 <p className="text-zinc-400 text-sm leading-relaxed">{p.description}</p>

@@ -9,29 +9,29 @@ const certificates = [
     issuer: "Westberg International Institute",
     date: "Aug - Oct 2025",
     link: "#",
-    icon: <ShieldCheck className="w-8 h-8 text-blue-500" />
+    icon: <ShieldCheck className="w-8 h-8 text-blue-500" />,
   },
   {
     title: "Higher Secondary (Maths Commerce)",
     issuer: "GHSS Moothedam",
     date: "Completed",
     link: "#",
-    icon: <GraduationCap className="w-8 h-8 text-purple-500" />
+    icon: <GraduationCap className="w-8 h-8 text-purple-500" />,
   },
   {
     title: "Google Ads Search Certification",
     issuer: "Google Digital Academy",
     date: "Verified",
     link: "#",
-    icon: <Award className="w-8 h-8 text-yellow-500" />
+    icon: <Award className="w-8 h-8 text-yellow-500" />,
   },
   {
     title: "Meta Certified Associate",
     issuer: "Meta Blueprint",
     date: "Verified",
     link: "#",
-    icon: <Award className="w-8 h-8 text-indigo-500" />
-  }
+    icon: <Award className="w-8 h-8 text-indigo-500" />,
+  },
 ];
 
 export default function Certificates() {
@@ -39,7 +39,9 @@ export default function Certificates() {
     <section id="certificates" className="py-24 bg-black border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="mb-16 md:text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Credentials & Trust</h2>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+            Credentials & Trust
+          </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Verified expertise from industry leaders in search, social, and growth marketing.
           </p>
@@ -58,10 +60,10 @@ export default function Certificates() {
               <div className="mb-6 p-3 bg-black rounded-xl inline-flex border border-zinc-800 group-hover:border-blue-500/30 transition-colors">
                 {cert.icon}
               </div>
-              
+
               <h3 className="text-lg font-bold text-white mb-2 leading-tight">{cert.title}</h3>
               <p className="text-zinc-500 text-sm mb-4">{cert.issuer}</p>
-              
+
               <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-800/50">
                 <span className="text-xs font-mono text-zinc-600">{cert.date}</span>
                 <button className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors">

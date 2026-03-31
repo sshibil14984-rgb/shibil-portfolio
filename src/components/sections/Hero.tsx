@@ -2,7 +2,16 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, BarChart3, Target, Search, ShoppingCart, Phone, Download, MessageCircle } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  Target,
+  Search,
+  ShoppingCart,
+  Phone,
+  Download,
+  MessageCircle,
+} from "lucide-react";
 
 export default function Hero() {
   return (
@@ -24,7 +33,7 @@ export default function Hero() {
           </h2>
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,30 +45,32 @@ export default function Hero() {
           </span>
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM. I create data-driven campaigns that improve online visibility, generate qualified leads, and increase ROI.
+          Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM. I create
+          data-driven campaigns that improve online visibility, generate qualified leads, and
+          increase ROI.
         </motion.p>
 
-        <motion.div 
+        <motion.div
           className="flex flex-col md:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <a 
-            href="tel:+918590658417" 
+          <a
+            href="tel:+918590658417"
             className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.2)]"
           >
             Direct Call
             <Phone className="w-5 h-5" />
           </a>
-          <a 
-            href="https://wa.me/918590658417" 
+          <a
+            href="https://wa.me/918590658417"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#1fae53] transition-colors"
@@ -67,8 +78,8 @@ export default function Hero() {
             WhatsApp Chat
             <MessageCircle className="w-5 h-5" />
           </a>
-          <a 
-            href="/SHIBIL resume.pdf" 
+          <a
+            href="/SHIBIL resume.pdf"
             download
             className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
           >
@@ -77,18 +88,32 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="mt-20 pt-10 border-t border-white/5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          <p className="text-sm text-gray-500 font-medium tracking-widest uppercase mb-8">Expertise In</p>
+          <p className="text-sm text-gray-500 font-medium tracking-widest uppercase mb-8">
+            Expertise In
+          </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
-            <div className="flex items-center gap-2"><Target className="w-5 h-5" /> <span className="font-semibold text-lg">Search Engine Optimization</span></div>
-            <div className="flex items-center gap-2"><BarChart3 className="w-5 h-5" /> <span className="font-semibold text-lg">Google Ads (PPC)</span></div>
-            <div className="flex items-center gap-2"><Search className="w-5 h-5" /> <span className="font-semibold text-lg">Social Media Marketing</span></div>
-            <div className="flex items-center gap-2"><ShoppingCart className="w-5 h-5" /> <span className="font-semibold text-lg">E-Commerce Management</span></div>
+            <div className="flex items-center gap-2">
+              <Target className="w-5 h-5" />{" "}
+              <span className="font-semibold text-lg">Search Engine Optimization</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <BarChart3 className="w-5 h-5" />{" "}
+              <span className="font-semibold text-lg">Google Ads (PPC)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Search className="w-5 h-5" />{" "}
+              <span className="font-semibold text-lg">Social Media Marketing</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShoppingCart className="w-5 h-5" />{" "}
+              <span className="font-semibold text-lg">E-Commerce Management</span>
+            </div>
           </div>
         </motion.div>
       </div>

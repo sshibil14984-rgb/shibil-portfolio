@@ -10,10 +10,14 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  
+
   if (!post) return {};
 
   return {
@@ -54,20 +58,24 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <header className="mb-12 border-b border-zinc-800 pb-8">
           <div className="flex items-center gap-4 mb-6">
-            <span className="text-blue-400 font-mono tracking-wide text-sm">{post.meta.category}</span>
+            <span className="text-blue-400 font-mono tracking-wide text-sm">
+              {post.meta.category}
+            </span>
             <span className="text-zinc-600">•</span>
             <span className="text-zinc-500 text-sm">
-              {new Date(post.meta.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+              {new Date(post.meta.date).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
             {post.meta.title}
           </h1>
-          <p className="text-xl text-gray-400">
-            {post.meta.description}
-          </p>
+          <p className="text-xl text-gray-400">{post.meta.description}</p>
         </header>
-        
+
         <div className="prose prose-invert prose-blue max-w-none">
           <MDXRemote source={post.content} />
         </div>

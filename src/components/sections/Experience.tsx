@@ -13,8 +13,8 @@ const experiences = [
       "Coordinated with marketing teams and clients to develop SEO strategy based on Google Analytics, keyword rankings, and competitive analysis.",
       "Identified keyword optimization opportunities and carried out thorough competitor research.",
       "Audited client websites for SEO and made suggestions for improving web pages and sitemaps, which significantly increased organic traffic.",
-      "Managed and optimized performance marketing campaigns to drive measurable business growth."
-    ]
+      "Managed and optimized performance marketing campaigns to drive measurable business growth.",
+    ],
   },
   {
     role: "Digital Marketing Executive",
@@ -25,9 +25,9 @@ const experiences = [
       "Gained hands-on experience in Search Engine Optimization (SEO) and technical website audits.",
       "Assisted in planning and executing Search Engine Marketing (SEM) via Meta and Google Ads.",
       "Managed and created engaging content for social media platforms including Facebook, Instagram, and LinkedIn.",
-      "Handled E-commerce Product Management for Amazon, optimizing listings for better discoverability."
-    ]
-  }
+      "Handled E-commerce Product Management for Amazon, optimizing listings for better discoverability.",
+    ],
+  },
 ];
 
 export default function Experience() {
@@ -35,9 +35,12 @@ export default function Experience() {
     <section id="experience" className="py-24 bg-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="mb-16 md:text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Professional Experience</h2>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+            Professional Experience
+          </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A track record of delivering measurable digital marketing results across diverse industries.
+            A track record of delivering measurable digital marketing results across diverse
+            industries.
           </p>
         </div>
 
@@ -63,8 +66,12 @@ export default function Experience() {
                   {exp.company}
                 </div>
                 <div className="flex flex-col md:items-end gap-1 text-sm text-zinc-500">
-                  <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {exp.period}</span>
-                  <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {exp.location}</span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3 h-3" /> {exp.period}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <MapPin className="w-3 h-3" /> {exp.location}
+                  </span>
                 </div>
               </div>
 
@@ -73,8 +80,8 @@ export default function Experience() {
                 <ul className="space-y-3 text-zinc-400 text-sm">
                   {exp.description.map((item, i) => (
                     <li key={i} className="flex gap-2">
-                       <span className="text-blue-500 mt-1">▹</span> 
-                       <span>{item}</span>
+                      <span className="text-blue-500 mt-1">▹</span>
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>

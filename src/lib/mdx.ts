@@ -43,7 +43,7 @@ export const getPostBySlug = (slug: string): Post | undefined => {
 
 export const getAllPosts = (): PostMeta[] => {
   if (!fs.existsSync(CONTENT_DIR)) return [];
-  
+
   const files = fs.readdirSync(CONTENT_DIR);
   const posts = files
     .filter((file) => /\.mdx$/.test(file))

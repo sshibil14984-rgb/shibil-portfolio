@@ -23,14 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Example: Programmatic SEO pages generated for target locations
   const targetCities = ["mumbai", "kerala", "dubai", "london", "bangalore"];
   const targetServices = ["seo-expert", "meta-ads-consultant", "ecommerce-growth-partner"];
-  
+
   const programmaticPages = targetServices.flatMap((service) =>
     targetCities.map((city) => ({
       url: `${baseUrl}/services/${service}-in-${city}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
-    }))
+    })),
   );
 
   return [...defaultPages, ...programmaticPages];

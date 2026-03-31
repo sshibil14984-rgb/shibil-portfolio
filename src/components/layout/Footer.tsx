@@ -12,18 +12,30 @@ export default function Footer() {
             Digital Marketing Specialist & Conversion Strategist.
           </p>
         </div>
-        
+
         <nav className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-          <Link href="#services" className="text-sm text-zinc-400 hover:text-white transition-colors">
+          <Link
+            href="#services"
+            className="text-sm text-zinc-400 hover:text-white transition-colors"
+          >
             Services
           </Link>
-          <Link href="#certificates" className="text-sm text-zinc-400 hover:text-white transition-colors">
+          <Link
+            href="#certificates"
+            className="text-sm text-zinc-400 hover:text-white transition-colors"
+          >
             Certificates
           </Link>
-          <Link href="#experience" className="text-sm text-zinc-400 hover:text-white transition-colors">
+          <Link
+            href="#experience"
+            className="text-sm text-zinc-400 hover:text-white transition-colors"
+          >
             Experience
           </Link>
-          <Link href="#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">
+          <Link
+            href="#contact"
+            className="text-sm text-zinc-400 hover:text-white transition-colors"
+          >
             Contact
           </Link>
         </nav>
@@ -33,9 +45,7 @@ export default function Footer() {
         <p className="text-xs text-zinc-600">
           &copy; {new Date().getFullYear()} Shibil S. All rights reserved.
         </p>
-        <p className="text-xs text-zinc-600">
-          Kerala, India
-        </p>
+        <p className="text-xs text-zinc-600">Kerala, India</p>
       </div>
     </footer>
   );

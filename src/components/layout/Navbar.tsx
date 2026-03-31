@@ -10,31 +10,49 @@ export default function Navbar() {
             Shibil<span className="text-blue-500">.</span>
           </Link>
         </div>
-        
+
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="#about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="#about"
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
             About
           </Link>
-          <Link href="#services" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="#services"
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
             Services
           </Link>
-          <Link href="#case-studies" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="#case-studies"
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
             Case Studies
           </Link>
-          <Link href="#certificates" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="#certificates"
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
             Certificates
           </Link>
-          <Link href="#experience" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="#experience"
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
             Experience
           </Link>
-          <Link href="#blog" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="#blog"
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
             Blog
           </Link>
         </nav>
 
         <div className="flex items-center">
-          <Link 
-            href="#contact" 
+          <Link
+            href="#contact"
             className="inline-flex h-9 items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950"
           >
             Book Strategy Call

@@ -25,8 +25,8 @@ export default function BlogIndex() {
         ) : (
           <div className="grid gap-8">
             {posts.map((post) => (
-              <Link 
-                key={post.slug} 
+              <Link
+                key={post.slug}
                 href={`/blog/${post.slug}`}
                 className="group block p-8 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition"
               >
@@ -35,15 +35,17 @@ export default function BlogIndex() {
                     {post.category}
                   </span>
                   <span className="text-zinc-500 text-sm">
-                    {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
                   </span>
                 </div>
                 <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-gray-400">
-                  {post.description}
-                </p>
+                <p className="text-gray-400">{post.description}</p>
               </Link>
             ))}
           </div>

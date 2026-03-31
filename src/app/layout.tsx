@@ -9,22 +9,24 @@ import { Person, WithContext } from "schema-dts";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const baseUrl = process.env.NODE_ENV === "production" ? "https://shibill.in" : "http://localhost:3000";
+const baseUrl =
+  process.env.NODE_ENV === "production" ? "https://shibill.in" : "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Shibil S | Digital Marketing Executive & SEO Specialist",
-    template: "%s | Shibil S"
+    template: "%s | Shibil S",
   },
-  description: "Results-driven Digital Marketing Executive with a strong background in SEO, SEM, SMM, and Email Marketing. I help businesses generate leads and increase ROI through data-driven campaigns.",
+  description:
+    "Results-driven Digital Marketing Executive with a strong background in SEO, SEM, SMM, and Email Marketing. I help businesses generate leads and increase ROI through data-driven campaigns.",
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: baseUrl,
     title: "Shibil S - Digital Marketing Strategist",
     description: "Scale your revenue with predictable, data-driven performance marketing systems.",
-    siteName: "Shibil S Portfolio"
+    siteName: "Shibil S Portfolio",
   },
   twitter: {
     card: "summary_large_image",
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: baseUrl,
-  }
+  },
 };
 
 const personSchema: WithContext<Person> = {
@@ -42,10 +44,18 @@ const personSchema: WithContext<Person> = {
   name: "Shibil S",
   jobTitle: "Digital Marketing Executive",
   url: baseUrl,
-  sameAs: [
-    "https://linkedin.com/in/shibil-s-433000370"
+  sameAs: ["https://linkedin.com/in/shibil-s-433000370"],
+  knowsAbout: [
+    "Search Engine Optimization (SEO)",
+    "Search Engine Marketing (SEM)",
+    "Social Media Marketing (SMM)",
+    "Email Marketing",
+    "Web Designing",
+    "Meta Ads",
+    "E-commerce Product Management",
+    "Conversion Rate Optimization (CRO)",
+    "Affiliate & Influencer Marketing",
   ],
-  knowsAbout: ["Search Engine Optimization (SEO)", "Search Engine Marketing (SEM)", "Social Media Marketing (SMM)", "Email Marketing", "Web Designing", "Meta Ads", "E-commerce Product Management", "Conversion Rate Optimization (CRO)", "Affiliate & Influencer Marketing"]
 };
 
 export default function RootLayout({
