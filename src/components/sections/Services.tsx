@@ -1,85 +1,101 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Target, BarChart3, Search, ShoppingCart, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BarChart3, Search, ShoppingCart, Target } from "lucide-react";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 const services = [
   {
     title: "Meta Ads Management",
-    icon: <Target className="w-8 h-8 text-blue-500" />,
-    problem: "Wasting spend on unqualified audiences.",
-    solution: "Data-backed targeting models & creative testing.",
-    outcome: "Lower CPA & higher ROAS predictability."
+    problem: "Spend gets wasted when creative, audience, and offer are not aligned.",
+    solution: "Campaign structure, audience testing, and creative iteration built around qualified conversion signals.",
+    outcome: "Cleaner acquisition loops and more confidence in where budget should scale.",
+    icon: Target,
+    accent: "text-cyan-300",
+    surface: "bg-cyan-400/12",
   },
   {
     title: "Google Ads Optimization",
-    icon: <BarChart3 className="w-8 h-8 text-green-500" />,
-    problem: "Losing high-intent searchers to competitors.",
-    solution: "Search intent mapping & precision keyword bidding.",
-    outcome: "Dominate top-of-page visibility & click-through rates."
+    problem: "High-intent searches are expensive when keyword intent and landing experience do not match.",
+    solution: "Search-term hygiene, tighter ad groups, and conversion-focused landing page recommendations.",
+    outcome: "Better visibility for buying intent without relying on guesswork.",
+    icon: BarChart3,
+    accent: "text-emerald-300",
+    surface: "bg-emerald-400/12",
   },
   {
     title: "SEO Growth Strategy",
-    icon: <Search className="w-8 h-8 text-purple-500" />,
-    problem: "Invisible on Google for money-making keywords.",
-    solution: "Technical audits, content strategy & backlink planning.",
-    outcome: "Sustainable organic traffic & ongoing free leads."
+    problem: "Organic traffic stalls when technical fixes, content direction, and structure are disconnected.",
+    solution: "Practical audits, content opportunity mapping, and on-page improvements prioritized by business value.",
+    outcome: "Steadier discoverability and a stronger base for long-term lead generation.",
+    icon: Search,
+    accent: "text-amber-300",
+    surface: "bg-amber-400/12",
   },
   {
     title: "E-Commerce Marketing",
-    icon: <ShoppingCart className="w-8 h-8 text-orange-500" />,
-    problem: "High cart abandonment & low customer lifetime value.",
-    solution: "Retargeting funnels & optimized product feeds.",
-    outcome: "Increased average order value & repeat purchases."
-  }
+    problem: "Product visibility and remarketing often break down between channels and catalog setup.",
+    solution: "Retargeting logic, product feed refinement, and campaign support for repeatable store growth.",
+    outcome: "A clearer path from discovery to checkout and better use of returning traffic.",
+    icon: ShoppingCart,
+    accent: "text-rose-300",
+    surface: "bg-rose-400/12",
+  },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 bg-zinc-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">How I Drive Growth</h2>
-          <p className="text-gray-400 text-lg max-w-2xl">
-            I don't just run ads; I build performance marketing systems designed to generate measurable revenue.
-          </p>
-        </div>
+    <section id="services" className="section-shell">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionIntro
+          eyebrow="Services"
+          title="Growth systems designed to remove friction from search, ads, and conversion."
+          description="I focus on the parts of digital marketing that directly affect visibility, lead quality, and the confidence to scale. The work is built to be practical, measurable, and easier to maintain."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-8 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-colors group"
-            >
-              <div className="mb-6 flex justify-between items-start">
-                <div className="p-3 bg-zinc-950 rounded-xl inline-flex border border-zinc-800">
-                  {service.icon}
+        <div className="grid gap-6 md:grid-cols-2">
+          {services.map((service) => {
+            const Icon = service.icon;
+
+            return (
+              <article key={service.title} className="glass-panel subtle-ring group rounded-[1.8rem] p-7 sm:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div className={`inline-flex rounded-2xl p-3 ${service.surface}`}>
+                    <Icon className={`h-6 w-6 ${service.accent}`} />
+                  </div>
+                  <ArrowUpRight className="h-5 w-5 text-white/30 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-zinc-600 group-hover:text-white transition-colors" />
-              </div>
-              
-              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-              
-              <ul className="space-y-3">
-                <li className="flex gap-3">
-                  <span className="text-red-400/80 font-mono text-sm shrink-0">Problem:</span>
-                  <span className="text-zinc-400 text-sm leading-relaxed">{service.problem}</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-blue-400/80 font-mono text-sm shrink-0">Solution:</span>
-                  <span className="text-zinc-400 text-sm leading-relaxed">{service.solution}</span>
-                </li>
-                <li className="flex gap-3 pt-2 border-t border-zinc-800/50 mt-2">
-                  <span className="text-green-400 font-mono text-sm shrink-0">Outcome:</span>
-                  <span className="text-zinc-200 text-sm leading-relaxed font-medium">{service.outcome}</span>
-                </li>
-              </ul>
-            </motion.div>
-          ))}
+
+                <h3 className="mt-8 font-display text-2xl font-semibold tracking-[-0.04em] text-white">
+                  {service.title}
+                </h3>
+
+                <dl className="mt-6 space-y-5">
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.28em] text-rose-200/90">
+                      Problem
+                    </dt>
+                    <dd className="mt-2 text-sm leading-7 text-[color:var(--muted-foreground)]">
+                      {service.problem}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/90">
+                      Solution
+                    </dt>
+                    <dd className="mt-2 text-sm leading-7 text-[color:var(--muted-foreground)]">
+                      {service.solution}
+                    </dd>
+                  </div>
+                  <div className="rounded-[1.3rem] border border-white/8 bg-white/[0.03] p-4">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-200/90">
+                      Outcome
+                    </dt>
+                    <dd className="mt-2 text-sm font-medium leading-7 text-slate-100">
+                      {service.outcome}
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

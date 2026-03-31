@@ -1,86 +1,72 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
-
-// In a real environment, you'd fetch this from your internal MDX library.
-// For now, I'll mock the top posts to ensure the homepage UI is complete.
-const featuredPosts = [
-  {
-    title: "How to Scale E-Commerce Revenue with Meta Ads in 2024",
-    slug: "scaling-ecommerce-with-meta-ads",
-    date: "Mar 30, 2024",
-    category: "Paid Ads",
-    excerpt: "A deep dive into modern Meta Ads strategies, focusing on creative testing and account consolidation."
-  }
-];
+import SectionIntro from "@/components/sections/SectionIntro";
+import { getAllPosts } from "@/lib/mdx";
+import { longDateFormatter } from "@/lib/site";
 
 export default function RecentBlogPosts() {
+  const posts = getAllPosts().slice(0, 3);
+
   return (
-    <section id="blog" className="py-24 bg-zinc-950 border-t border-zinc-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-white">Latest Marketing <span className="text-blue-500">Insights</span></h2>
-            <p className="text-gray-400 text-lg max-w-xl">
-              Practical strategies and industry and insights to help you stay ahead in the ever-evolving digital landscape.
-            </p>
-          </div>
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center gap-2 text-blue-400 font-semibold hover:text-blue-300 transition-colors group"
-          >
-            Visit Full Blog <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+    <section id="blog" className="section-shell">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionIntro
+            eyebrow="Insights"
+            title="Writing that translates channel changes into practical next steps."
+            description="The blog focuses on SEO, paid media, and growth execution for businesses that want clearer reasoning behind every recommendation."
+            className="mb-0"
+          />
+
+          <Link href="/blog" className="secondary-button text-sm">
+            Visit Full Blog
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredPosts.map((post, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="group p-8 rounded-3xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition relative flex flex-col"
-            >
-              <div className="mb-6 flex items-center gap-3">
-                <span className="p-2 bg-blue-500/10 rounded-lg">
-                  <BookOpen className="w-4 h-4 text-blue-500" />
-                </span>
-                <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">{post.category}</span>
-              </div>
-              
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">
-                <Link href={`/blog/${post.slug}`}>
-                  {post.title}
-                </Link>
-              </h3>
-              
-              <p className="text-zinc-400 text-sm mb-8 leading-relaxed">
-                {post.excerpt}
-              </p>
-              
-              <div className="mt-auto pt-6 border-t border-zinc-800 flex items-center justify-between">
-                <span className="text-xs text-zinc-600 font-medium">{post.date}</span>
-                <Link 
-                  href={`/blog/${post.slug}`}
-                  className="text-white text-sm font-bold flex items-center gap-1 group/btn"
-                >
-                  Read More <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-          
-          {/* Empty state placeholder for more posts */}
-          <div className="hidden lg:flex p-8 rounded-3xl border border-dashed border-zinc-800 items-center justify-center text-center">
-            <p className="text-zinc-600 text-sm max-w-[150px]">
-              More technical guides and case studies arriving weekly.
-            </p>
+        {posts.length === 0 ? (
+          <div className="glass-panel subtle-ring mt-10 rounded-[1.8rem] p-8 text-center text-[color:var(--muted-foreground)]">
+            More insights are on the way.
           </div>
-        </div>
+        ) : (
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {posts.map((post) => (
+              <article key={post.slug} className="glass-panel subtle-ring flex h-full flex-col rounded-[1.8rem] p-7">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex rounded-2xl bg-cyan-400/12 p-2 text-cyan-300">
+                    <BookOpen className="h-4 w-4" />
+                  </span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.26em] text-cyan-200">
+                    {post.category}
+                  </span>
+                </div>
+
+                <h3 className="mt-6 font-display text-2xl font-semibold tracking-[-0.04em] text-white">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-cyan-200">
+                    {post.title}
+                  </Link>
+                </h3>
+
+                <p className="mt-4 text-sm leading-7 text-[color:var(--muted-foreground)]">
+                  {post.description}
+                </p>
+
+                <div className="mt-auto flex items-center justify-between gap-4 border-t border-white/8 pt-6">
+                  <span className="text-sm text-[color:var(--muted-foreground)]">
+                    {longDateFormatter.format(new Date(post.date))}
+                  </span>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-200"
+                  >
+                    Read article
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
