@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
+import Maintenance from "@/components/layout/Maintenance";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import JsonLd from "@/components/seo/JsonLd";
 import { Person, WithContext } from "schema-dts";
@@ -13,10 +14,12 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const baseUrl =
   process.env.NODE_ENV === "production" ? "https://shibill.in" : "http://localhost:3000";
 
+const IS_MAINTENANCE = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Shibil S | Digital Marketing Executive & SEO Specialist",
+    default: IS_MAINTENANCE ? "Under Maintenance | Shibil S" : "Shibil S | Digital Marketing Executive & SEO Specialist",
     template: "%s | Shibil S",
   },
   description:
@@ -71,7 +74,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-black text-white`}>
         <Navbar />
-        {children}
+        {IS_MAINTENANCE ? <Maintenance /> : children}
         <WhatsAppButton />
         <Footer />
         <GoogleAnalytics gaId="G-XXXXXXX" />
@@ -79,3 +82,4 @@ export default function RootLayout({
     </html>
   );
 }
+
