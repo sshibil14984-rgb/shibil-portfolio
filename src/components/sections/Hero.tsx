@@ -105,6 +105,10 @@ export default function Hero() {
               <ShoppingCart className="w-5 h-5" />{" "}
               <span className="font-semibold text-lg">E-Commerce Management</span>
             </div>
+                        <div className="flex items-center gap-2">
+              <ShoppingCart className="w-5 h-5" />{" "}
+              <span className="font-semibold text-lg">Search Engine Marketing (SEM)</span>
+            </div>
           </div>
         </motion.div>
       </div>
