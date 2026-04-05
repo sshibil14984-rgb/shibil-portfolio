@@ -15,6 +15,7 @@ Professional portfolio of **Shibil S**, a results-driven Digital Marketing Execu
 - **SEO Optimized**: Advanced JSON-LD schema implementation, meta-tag management, and semantic HTML for maximum search visibility.
 - **Responsive Design**: Premium dark-themed aesthetic using Tailwind CSS 4 and Framer Motion for smooth, high-end interactions.
 - **Direct Engagement**: Integrated WhatsApp floating contact, direct call functionality, and downloadable CV.
+- **Client Management**: A dedicated [Handover Guide](./HANDOVER_GUIDE.md) for non-developer site updates.
 
 ## 🛠️ Technology Stack
 

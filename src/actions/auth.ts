@@ -3,8 +3,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const USERNAME = "admin";
-const PASSWORD = "@qwertyuiop1234567890A";
+const USERNAME = process.env.ADMIN_USERNAME || "admin";
+const PASSWORD = process.env.ADMIN_PASSWORD || "@qwertyuiop1234567890A";
 
 export async function login(formData: FormData) {
   const user = formData.get("username");
