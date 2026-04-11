@@ -46,6 +46,17 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Shibil S. All rights reserved.
         </p>
         <p className="text-xs text-zinc-600">Kerala, India</p>
+        <p className="text-xs text-zinc-600">
+          Developed by{" "}
+          <a
+            href="https://ashifek.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors underline underline-offset-4 pointer-events-auto"
+          >
+            Ashif E.K
+          </a>
+        </p>
       </div>
     </footer>
   );

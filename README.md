@@ -43,6 +43,89 @@ Professional portfolio of **Shibil S**, a results-driven Digital Marketing Execu
 └── public/               # Static assets (images, PDFs)
 ```
 
+## 🏗️ System Architecture
+
+The portfolio utilizes a modern serverless stack designed for performance, security, and scalability.
+
+```mermaid
+graph TD
+    Client[Client Browser/Mobile]
+    NextJS[Next.js App Router]
+    ServerActions[Server Actions]
+    Drizzle[Drizzle ORM]
+    Postgres[Neon PostgreSQL]
+    Vercel[Vercel Global Edge]
+
+    Client <-->|HTTPS/HTTPS| Vercel
+    Vercel --- NextJS
+    NextJS --- ServerActions
+    ServerActions --- Drizzle
+    Drizzle --- Postgres
+```
+
+## 🗄️ Database Schema
+
+The database is architected for a content-first experience, managing everything from projects to professional services.
+
+```mermaid
+erDiagram
+    PROJECTS ||--o{ TAGS : "contains (comma-sep)"
+    PROJECTS {
+        string id PK
+        string title
+        string client
+        string problem
+        string strategy
+        string execution
+        string result
+        timestamp createdAt
+    }
+    SERVICES {
+        string id PK
+        string title
+        string icon
+        string problem
+        string solution
+        string outcome
+        timestamp createdAt
+    }
+    EXPERIENCES {
+        string id PK
+        string role
+        string company
+        string period
+        string location
+        string description
+        timestamp createdAt
+    }
+    BLOG_POSTS {
+        string id PK
+        string title
+        string slug
+        string category
+        string content
+        timestamp createdAt
+    }
+```
+
+## 🔄 API & Data Flow
+
+Data interactions are handled primarily through Next.js Server Actions, ensuring type safety and reduced client-side JavaScript.
+
+```mermaid
+sequenceDiagram
+    participant User as Client UI
+    participant SA as Server Action (src/actions)
+    participant DB as Drizzle + Neon DB
+
+    User->>SA: Trigger Action (e.g., Update Project)
+    SA->>SA: Zod Validation & Permission Check
+    SA->>DB: execute() via Drizzle ORM
+    DB-->>SA: Response
+    SA-->>User: Result (Success/Error)
+    Note over User: UI Revalidation (Next.js Cache)
+```
+
 ## 🛠️ Getting Started
 
 1. **Clone the repository**

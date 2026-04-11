@@ -1,21 +1,53 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, User, MapPin, Send, MessageCircle } from "lucide-react";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, User, MapPin, Send, MessageCircle, CheckCircle2, AlertCircle, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
   const [pending, setPending] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [status, setStatus] = useState<"success" | "error" | null>(null);
+
+  // Auto-hide the toast after 5 seconds
+  useEffect(() => {
+    if (status) {
+      const timer = setTimeout(() => {
+        setStatus(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPending(true);
-    // Simulate API call for now; since we just scaffolded
-    setTimeout(() => {
+    setStatus(null);
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://formspree.io/f/mzdkgkpw", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
       setPending(false);
-      setSuccess(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -23,105 +55,125 @@ export default function Contact() {
       {/* Subtle Background Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
+      {/* Modern Toast Popup */}
+      <AnimatePresence>
+        {status && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-2rem)] max-w-md"
+          >
+            <div className={`flex items-center gap-4 p-4 rounded-2xl border backdrop-blur-md shadow-2xl ${
+              status === "success" 
+                ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400" 
+                : "bg-rose-500/10 border-rose-500/20 text-rose-400"
+            }`}>
+              <div className={`p-2 rounded-xl ${
+                status === "success" ? "bg-emerald-500/20" : "bg-rose-500/20"
+              }`}>
+                {status === "success" ? <CheckCircle2 className="w-6 h-6" /> : <AlertCircle className="w-6 h-6" />}
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-white">
+                  {status === "success" ? "Message sent!" : "Submission failed"}
+                </p>
+                <p className="text-sm opacity-80">
+                  {status === "success" 
+                    ? "I'll get back to you within 24 hours." 
+                    : "Something went wrong. Please try again or email me directly."}
+                </p>
+              </div>
+              <button 
+                onClick={() => setStatus(null)}
+                className="p-1 hover:bg-white/10 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left: Info */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              Let's build predictable revenue.
-            </h2>
-            <p className="text-gray-400 text-lg mb-12 max-w-md">
-              Whether you need to scale your ad spend profitably or build a robust SEO foundation,
-              I'm ready to help. Reach out to schedule a strategy call.
-            </p>
+          <div className="flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white via-zinc-400 to-zinc-600 bg-clip-text text-transparent">
+                Let's build predictable revenue.
+              </h2>
+              <p className="text-zinc-400 text-lg mb-12 max-w-md leading-relaxed">
+                Whether you need to scale your ad spend profitably or build a robust SEO foundation,
+                I'm ready to help. Reach out to schedule a strategy call.
+              </p>
 
-            <div className="space-y-6">
-              <a
-                href="mailto:sshibil14954@gmail.com"
-                className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
-              >
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
-                  <Mail className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <p className="font-medium">Email</p>
-                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
-                    sshibil14954@gmail.com
-                  </p>
-                </div>
-              </a>
+              <div className="space-y-6">
+                <a
+                  href="mailto:sshibil14954@gmail.com"
+                  className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
+                >
+                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors shadow-lg">
+                    <Mail className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Email</p>
+                    <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors focus:outline-none">
+                      sshibil14954@gmail.com
+                    </p>
+                  </div>
+                </a>
 
-              <a
-                href="https://linkedin.com/in/shibil-s-433000370"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
-              >
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
-                  <User className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <p className="font-medium">LinkedIn</p>
-                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
-                    Connect professionally
-                  </p>
-                </div>
-              </a>
+                <a
+                  href="https://linkedin.com/in/shibil-s-433000370"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
+                >
+                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors shadow-lg">
+                    <User className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="font-medium">LinkedIn</p>
+                    <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
+                      Connect professionally
+                    </p>
+                  </div>
+                </a>
 
-              <a
-                href="tel:+918590658417"
-                className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
-              >
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
-                  <svg
-                    className="w-5 h-5 text-blue-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-medium">Phone</p>
-                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
-                    +91 8590658417
-                  </p>
-                </div>
-              </a>
+                <a
+                  href="https://wa.me/918590658417"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
+                >
+                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors shadow-lg">
+                    <MessageCircle className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <div>
+                    <p className="font-medium">WhatsApp</p>
+                    <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
+                      Chat with me
+                    </p>
+                  </div>
+                </a>
 
-              <a
-                href="https://wa.me/918590658417"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
-              >
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors">
-                  <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                </div>
-                <div>
-                  <p className="font-medium">WhatsApp</p>
-                  <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
-                    Chat with me
-                  </p>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-4 text-zinc-300 group">
-                <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <p className="font-medium">Location</p>
-                  <p className="text-sm text-zinc-500">Nilambur, Malappuram, Kerala-679333</p>
+                <div className="flex items-center gap-4 text-zinc-300 group">
+                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center shadow-lg">
+                    <MapPin className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Location</p>
+                    <p className="text-sm text-zinc-500">Nilambur, Malappuram, Kerala-679333</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right: Form */}
@@ -129,25 +181,14 @@ export default function Contact() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="p-8 md:p-10 bg-zinc-900 border border-zinc-800 rounded-3xl"
+            className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl relative overflow-hidden"
           >
-            <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none" />
+            
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
 
-            {success ? (
-              <div className="h-[300px] flex flex-col items-center justify-center text-center space-y-4">
-                <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-4">
-                  <Send className="w-8 h-8" />
-                </div>
-                <h4 className="text-2xl font-bold">Message sent!</h4>
-                <p className="text-zinc-400">I'll get back to you within 24 hours.</p>
-                <button
-                  onClick={() => setSuccess(false)}
-                  className="mt-4 px-6 py-2 text-sm text-white bg-zinc-800 rounded-full hover:bg-zinc-700 transition"
-                >
-                  Send another
-                </button>
-              </div>
-            ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -159,7 +200,7 @@ export default function Contact() {
                       name="name"
                       type="text"
                       required
-                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
                       placeholder="John Doe"
                     />
                   </div>
@@ -172,7 +213,7 @@ export default function Contact() {
                       name="email"
                       type="email"
                       required
-                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -187,7 +228,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={4}
-                    className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 resize-none"
+                    className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 resize-none transition-all placeholder:text-zinc-700"
                     placeholder="Tell me about your business goals..."
                   ></textarea>
                 </div>
@@ -195,15 +236,26 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={pending}
-                  className="w-full py-4 mt-4 bg-white text-black font-bold rounded-xl hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-4 mt-4 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
                 >
-                  {pending ? "Sending..." : "Send Message"}
+                  {pending ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-zinc-900/30 border-t-zinc-900 rounded-full animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </button>
               </form>
-            )}
+            </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 }
+
