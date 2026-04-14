@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { ShieldCheck } from "lucide-react";
+import { UserCog } from "lucide-react";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
 
 export default function Navbar() {
@@ -56,10 +56,10 @@ export default function Navbar() {
           <ThemeToggle />
           <Link
             href="/admin"
-            className="p-2 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/5 rounded-lg transition-all duration-300"
+            className="p-2 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10 rounded-lg transition-all duration-300"
             title="Admin Access"
           >
-            <ShieldCheck className="w-5 h-5" />
+            <UserCog className="w-5 h-5" />
           </Link>
           <Link
             href="#contact"

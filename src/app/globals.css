@@ -28,25 +28,25 @@
 @layer base {
   :root {
     --background: #ffffff;
-    --foreground: #0a0a0a;
+    --foreground: #020617;
     --card: #ffffff;
-    --card-foreground: #0a0a0a;
+    --card-foreground: #020617;
     --popover: #ffffff;
-    --popover-foreground: #0a0a0a;
-    --primary: #0a0a0a;
-    --primary-foreground: #fafafa;
-    --secondary: #f4f4f5;
-    --secondary-foreground: #18181b;
-    --muted: #f4f4f5;
-    --muted-foreground: #71717a;
-    --accent: #f4f4f5;
-    --accent-foreground: #18181b;
+    --popover-foreground: #020617;
+    --primary: #2563eb;
+    --primary-foreground: #ffffff;
+    --secondary: #f8fafc;
+    --secondary-foreground: #020617;
+    --muted: #f8fafc;
+    --muted-foreground: #475569;
+    --accent: #f8fafc;
+    --accent-foreground: #020617;
     --destructive: #ef4444;
-    --destructive-foreground: #fafafa;
-    --border: #e4e4e7;
-    --input: #e4e4e7;
-    --ring: #0a0a0a;
-    --radius: 0.5rem;
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #2563eb;
+    --radius: 0.75rem;
   }
 
   .dark {
