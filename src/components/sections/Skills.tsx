@@ -12,11 +12,11 @@ export default function Skills({ data }: { data: SkillData[] }) {
   if (!data?.length) return null;
 
   return (
-    <section id="skills" className="py-24 bg-zinc-950 border-y border-zinc-900">
+    <section id="skills" className="py-24 bg-muted/30 border-y border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="mb-16 md:text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Core Competencies</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">Core Competencies</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             A comprehensive stack of tools and methodologies leveraged to scale businesses
             effectively.
           </p>
@@ -30,9 +30,9 @@ export default function Skills({ data }: { data: SkillData[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: groupIdx * 0.1 }}
-              className="p-6 bg-black border border-zinc-800 rounded-2xl"
+              className="p-6 bg-card border border-border rounded-2xl shadow-sm hover:border-blue-500/30 transition-all"
             >
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                 {group.category}
               </h3>
@@ -41,7 +41,7 @@ export default function Skills({ data }: { data: SkillData[] }) {
                 {group.skillsList.split(",").map((skill: string, skillIdx: number) => (
                   <span
                     key={skillIdx}
-                    className="px-3 py-1.5 bg-zinc-900 border border-zinc-800 text-zinc-300 text-sm rounded-lg hover:border-zinc-700 hover:text-white transition-colors cursor-default"
+                    className="px-3 py-1.5 bg-muted border border-border text-muted-foreground text-sm rounded-lg hover:border-blue-500/30 hover:text-foreground transition-all cursor-default"
                   >
                     {skill.trim()}
                   </span>
@@ -52,5 +52,6 @@ export default function Skills({ data }: { data: SkillData[] }) {
         </div>
       </div>
     </section>
+
   );
 }

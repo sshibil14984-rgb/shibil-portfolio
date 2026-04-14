@@ -59,23 +59,33 @@ const personSchema: WithContext<Person> = {
   ],
 };
 
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth dark">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <JsonLd schema={personSchema} />
       </head>
-      <body className={`${inter.variable} font-sans antialiased bg-black text-white`}>
-        <Navbar />
-        {children}
-        <WhatsAppButton />
-        <Footer />
-        <GoogleAnalytics gaId="G-XXXXXXX" />
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+          <WhatsAppButton />
+          <Footer />
+          <GoogleAnalytics gaId="G-XXXXXXX" />
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+

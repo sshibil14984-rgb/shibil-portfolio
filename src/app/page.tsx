@@ -56,7 +56,7 @@ export default async function Home() {
   await seed();
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-background">
       <Hero />
       <About />
       

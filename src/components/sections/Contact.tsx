@@ -51,7 +51,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-black relative overflow-hidden">
+    <section id="contact" className="py-24 bg-background relative overflow-hidden border-t border-border">
       {/* Subtle Background Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -66,8 +66,8 @@ export default function Contact() {
           >
             <div className={`flex items-center gap-4 p-4 rounded-2xl border backdrop-blur-md shadow-2xl ${
               status === "success" 
-                ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400" 
-                : "bg-rose-500/10 border-rose-500/20 text-rose-400"
+                ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400" 
+                : "bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-400"
             }`}>
               <div className={`p-2 rounded-xl ${
                 status === "success" ? "bg-emerald-500/20" : "bg-rose-500/20"
@@ -75,7 +75,7 @@ export default function Contact() {
                 {status === "success" ? <CheckCircle2 className="w-6 h-6" /> : <AlertCircle className="w-6 h-6" />}
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-white">
+                <p className="font-semibold text-foreground">
                   {status === "success" ? "Message sent!" : "Submission failed"}
                 </p>
                 <p className="text-sm opacity-80">
@@ -86,7 +86,7 @@ export default function Contact() {
               </div>
               <button 
                 onClick={() => setStatus(null)}
-                className="p-1 hover:bg-white/10 rounded-lg transition-colors"
+                className="p-1 hover:bg-foreground/10 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -105,10 +105,10 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white via-zinc-400 to-zinc-600 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-foreground via-foreground/80 to-foreground/50 bg-clip-text text-transparent">
                 Let's build predictable revenue.
               </h2>
-              <p className="text-zinc-400 text-lg mb-12 max-w-md leading-relaxed">
+              <p className="text-muted-foreground text-lg mb-12 max-w-md leading-relaxed">
                 Whether you need to scale your ad spend profitably or build a robust SEO foundation,
                 I'm ready to help. Reach out to schedule a strategy call.
               </p>
@@ -116,14 +116,14 @@ export default function Contact() {
               <div className="space-y-6">
                 <a
                   href="mailto:sshibil14954@gmail.com"
-                  className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
+                  className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors group"
                 >
-                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors shadow-lg">
-                    <Mail className="w-5 h-5 text-blue-400" />
+                  <div className="w-12 h-12 bg-muted border border-border rounded-xl flex items-center justify-center group-hover:border-blue-500/50 transition-colors shadow-sm">
+                    <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="font-medium">Email</p>
-                    <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors focus:outline-none">
+                    <p className="font-medium text-foreground">Email</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors focus:outline-none">
                       sshibil14954@gmail.com
                     </p>
                   </div>
@@ -133,14 +133,14 @@ export default function Contact() {
                   href="https://linkedin.com/in/shibil-s-433000370"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
+                  className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors group"
                 >
-                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors shadow-lg">
-                    <User className="w-5 h-5 text-blue-400" />
+                  <div className="w-12 h-12 bg-muted border border-border rounded-xl flex items-center justify-center group-hover:border-blue-500/50 transition-colors shadow-sm">
+                    <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="font-medium">LinkedIn</p>
-                    <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
+                    <p className="font-medium text-foreground">LinkedIn</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors">
                       Connect professionally
                     </p>
                   </div>
@@ -150,26 +150,26 @@ export default function Contact() {
                   href="https://wa.me/918590658417"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group"
+                  className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors group"
                 >
-                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center group-hover:border-zinc-700 transition-colors shadow-lg">
+                  <div className="w-12 h-12 bg-muted border border-border rounded-xl flex items-center justify-center group-hover:border-blue-500/50 transition-colors shadow-sm">
                     <MessageCircle className="w-5 h-5 text-[#25D366]" />
                   </div>
                   <div>
-                    <p className="font-medium">WhatsApp</p>
-                    <p className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
+                    <p className="font-medium text-foreground">WhatsApp</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors">
                       Chat with me
                     </p>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-4 text-zinc-300 group">
-                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center shadow-lg">
-                    <MapPin className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-4 text-muted-foreground group">
+                  <div className="w-12 h-12 bg-muted border border-border rounded-xl flex items-center justify-center shadow-sm">
+                    <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="font-medium">Location</p>
-                    <p className="text-sm text-zinc-500">Nilambur, Malappuram, Kerala-679333</p>
+                    <p className="font-medium text-foreground">Location</p>
+                    <p className="text-sm text-muted-foreground">Nilambur, Malappuram, Kerala-679333</p>
                   </div>
                 </div>
               </div>
@@ -181,18 +181,18 @@ export default function Contact() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-3xl relative overflow-hidden"
+            className="p-8 md:p-10 bg-card backdrop-blur-sm border border-border rounded-3xl relative overflow-hidden shadow-xl"
           >
             {/* Subtle Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none" />
             
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+              <h3 className="text-2xl font-bold mb-6 text-foreground">Send a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-zinc-400">
+                    <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
                       Name
                     </label>
                     <input
@@ -200,12 +200,12 @@ export default function Contact() {
                       name="name"
                       type="text"
                       required
-                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
+                      className="w-full bg-background border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder:text-muted-foreground/50"
                       placeholder="John Doe"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-zinc-400">
+                    <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
                       Email
                     </label>
                     <input
@@ -213,14 +213,14 @@ export default function Contact() {
                       name="email"
                       type="email"
                       required
-                      className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder:text-zinc-700"
+                      className="w-full bg-background border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder:text-muted-foreground/50"
                       placeholder="john@company.com"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-zinc-400">
+                  <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
                     Message
                   </label>
                   <textarea
@@ -228,7 +228,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={4}
-                    className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 resize-none transition-all placeholder:text-zinc-700"
+                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 resize-none transition-all placeholder:text-muted-foreground/50"
                     placeholder="Tell me about your business goals..."
                   ></textarea>
                 </div>
@@ -236,11 +236,11 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={pending}
-                  className="w-full py-4 mt-4 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
+                  className="w-full py-4 mt-4 bg-primary text-primary-foreground font-bold rounded-xl hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group shadow-md"
                 >
                   {pending ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-zinc-900/30 border-t-zinc-900 rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                       <span>Sending...</span>
                     </>
                   ) : (
@@ -256,6 +256,7 @@ export default function Contact() {
         </div>
       </div>
     </section>
+
   );
 }
 

@@ -16,13 +16,13 @@ export default function Experience({ data }: { data: ExperienceData[] }) {
   if (!data?.length) return null;
 
   return (
-    <section id="experience" className="py-24 bg-black">
+    <section id="experience" className="py-24 bg-background border-t border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="mb-16 md:text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
             Professional Experience
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             A track record of delivering measurable digital marketing results across diverse
             industries.
           </p>
@@ -39,17 +39,17 @@ export default function Experience({ data }: { data: ExperienceData[] }) {
               className="relative pl-8 md:grid md:grid-cols-2 md:gap-12 md:pl-0"
             >
               {/* Timeline Dot/Line for mobile */}
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-800 md:hidden" />
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-border md:hidden" />
               <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-blue-500 md:hidden" />
 
               {/* Left Side: Meta Data */}
               <div className="mb-4 md:mb-0 md:text-right">
-                <h3 className="text-2xl font-bold text-white mb-2">{exp.role}</h3>
-                <div className="flex items-center md:justify-end gap-2 text-blue-400 font-medium mb-3">
+                <h3 className="text-2xl font-bold text-foreground mb-2">{exp.role}</h3>
+                <div className="flex items-center md:justify-end gap-2 text-blue-600 dark:text-blue-400 font-medium mb-3">
                   <Building2 className="w-4 h-4" />
                   {exp.company}
                 </div>
-                <div className="flex flex-col md:items-end gap-1 text-sm text-zinc-500">
+                <div className="flex flex-col md:items-end gap-1 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" /> {exp.period}
                   </span>
@@ -60,8 +60,8 @@ export default function Experience({ data }: { data: ExperienceData[] }) {
               </div>
 
               {/* Right Side: Description */}
-              <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-colors">
-                <ul className="space-y-3 text-zinc-400 text-sm">
+              <div className="p-6 rounded-2xl bg-card border border-border hover:border-blue-500/50 transition-all shadow-sm">
+                <ul className="space-y-3 text-muted-foreground text-sm">
                   {exp.description?.split("\n").map((item: string, i: number) => (
                     <li key={i} className="flex gap-2">
                       <span className="text-blue-500 mt-1">▹</span>
@@ -75,5 +75,6 @@ export default function Experience({ data }: { data: ExperienceData[] }) {
         </div>
       </div>
     </section>
+
   );
 }

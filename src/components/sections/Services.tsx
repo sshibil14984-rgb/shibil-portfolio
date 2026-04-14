@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Target, 
   BarChart3, 
-  Search, 
-  ShoppingCart, 
+  SearchCode, 
+  ShoppingBag, 
   ArrowUpRight, 
   LucideIcon, 
   Award, 
@@ -16,20 +16,28 @@ import {
   Briefcase, 
   FileText,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Mail,
+  TrendingUp,
+  Lightbulb,
+  Share2
 } from "lucide-react";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   target: Target,
   chart: BarChart3,
-  search: Search,
-  "shopping-cart": ShoppingCart,
+  search: SearchCode,
+  "shopping-cart": ShoppingBag,
   award: Award,
   shield: ShieldCheck,
   graduation: GraduationCap,
   zap: Zap,
   briefcase: Briefcase,
   file: FileText,
+  mail: Mail,
+  trending: TrendingUp,
+  idea: Lightbulb,
+  share: Share2,
 };
 
 interface Service {
@@ -50,12 +58,12 @@ export default function Services({ data }: { data: Service[] }) {
   const displayData = showAll ? data : data.slice(0, 4);
 
   return (
-    <section id="services" className="py-24 bg-zinc-950">
+    <section id="services" className="py-24 bg-muted/20 border-t border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">How I Drive Growth</h2>
-            <p className="text-gray-400 text-lg">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">How I Drive Growth</h2>
+            <p className="text-muted-foreground text-lg">
               I don't just run ads; I build performance marketing systems designed to generate
               measurable revenue.
             </p>
@@ -73,29 +81,29 @@ export default function Services({ data }: { data: Service[] }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="h-full p-8 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-colors group cursor-pointer h-full"
+                  className="h-full p-8 rounded-2xl bg-card border border-border hover:border-blue-500/50 transition-all group cursor-pointer h-full shadow-sm"
                 >
                   <div className="mb-6 flex justify-between items-start">
-                    <div className="p-3 bg-zinc-950 rounded-xl inline-flex border border-zinc-800 text-blue-500">
+                    <div className="p-3 bg-muted rounded-xl inline-flex border border-border text-blue-600 dark:text-blue-500">
                       <Icon className="w-8 h-8" />
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-zinc-600 group-hover:text-white transition-colors" />
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                   </div>
 
-                  <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                  <h3 className="text-xl font-bold mb-4 text-foreground">{service.title}</h3>
 
                   <ul className="space-y-3">
                     <li className="flex gap-3">
-                      <span className="text-red-400/80 font-mono text-sm shrink-0">Problem:</span>
-                      <span className="text-zinc-400 text-sm leading-relaxed">{service.problem}</span>
+                      <span className="text-red-600 dark:text-red-400/80 font-mono text-xs uppercase tracking-tight shrink-0 mt-1">Problem:</span>
+                      <span className="text-muted-foreground text-sm leading-relaxed">{service.problem}</span>
                     </li>
                     <li className="flex gap-3">
-                      <span className="text-blue-400/80 font-mono text-sm shrink-0">Solution:</span>
-                      <span className="text-zinc-400 text-sm leading-relaxed">{service.solution}</span>
+                      <span className="text-blue-600 dark:text-blue-400/80 font-mono text-xs uppercase tracking-tight shrink-0 mt-1">Solution:</span>
+                      <span className="text-muted-foreground text-sm leading-relaxed">{service.solution}</span>
                     </li>
-                    <li className="flex gap-3 pt-2 border-t border-zinc-800/50 mt-2">
-                      <span className="text-green-400 font-mono text-sm shrink-0">Outcome:</span>
-                      <span className="text-zinc-200 text-sm leading-relaxed font-medium">
+                    <li className="flex gap-3 pt-4 border-t border-border mt-2">
+                      <span className="text-green-600 dark:text-green-400 font-mono text-xs uppercase tracking-tight shrink-0 mt-1">Outcome:</span>
+                      <span className="text-foreground text-sm leading-relaxed font-semibold">
                         {service.outcome}
                       </span>
                     </li>
@@ -128,7 +136,7 @@ export default function Services({ data }: { data: Service[] }) {
           >
             <button
               onClick={() => setShowAll(!showAll)}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-zinc-900 border border-zinc-800 text-white rounded-full hover:bg-zinc-800 transition-all font-bold group"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-background border border-border text-foreground rounded-full hover:bg-muted transition-all font-bold group shadow-sm"
             >
               {showAll ? (
                 <>
@@ -144,5 +152,6 @@ export default function Services({ data }: { data: Service[] }) {
         )}
       </div>
     </section>
+
   );
 }
