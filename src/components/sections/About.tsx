@@ -55,7 +55,7 @@ export default function About() {
           >
             {/* No gradient overlay for high clarity */}
             <Image
-              src="/image.png"
+              src="/shibil-profile.png"
               alt="Shibil S - Digital Marketing Specialist"
               fill
               className="object-cover object-center"
