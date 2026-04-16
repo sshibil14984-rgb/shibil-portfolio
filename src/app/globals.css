@@ -23,6 +23,53 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-luxury-shimmer: luxury-shimmer 4.5s cubic-bezier(0.15, 0, 0.2, 1) infinite;
+  --animate-luxury-pulse: luxury-pulse 4.5s ease-in-out infinite;
+
+  @keyframes luxury-shimmer {
+    0% {
+      background-position: 450% 0;
+    }
+    100% {
+      background-position: -450% 0;
+    }
+  }
+
+  @keyframes luxury-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.85;
+    }
+  }
+}
+
+@utility animate-shimmer {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 115, 187, 0.03) 20%,
+    rgba(0, 115, 187, 0.1) 40%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(0, 115, 187, 0.1) 60%,
+    rgba(0, 115, 187, 0.03) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  .dark & {
+    background: linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.01) 30%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.01) 70%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  background-size: 450% 100%;
+  animation: luxury-shimmer 4.5s cubic-bezier(0.15, 0, 0.2, 1) infinite, 
+             luxury-pulse 4.5s ease-in-out infinite;
 }
 
 @layer base {
@@ -38,7 +85,7 @@
     --secondary: #f8fafc;
     --secondary-foreground: #020617;
     --muted: #f8fafc;
-    --muted-foreground: #475569;
+    --muted-foreground: #334155;
     --accent: #f8fafc;
     --accent-foreground: #020617;
     --destructive: #ef4444;
@@ -72,46 +119,17 @@
   }
 }
 
-@layer base {
-  * {
-    border-color: var(--border);
-  }
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    min-height: 100vh;
-    scroll-behavior: smooth;
-    font-family: var(--font-inter), sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .animate-shimmer {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      transparent 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite linear;
-  }
-
-  .dark .animate-shimmer {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      transparent 100%
-    );
-  }
-
-  @keyframes shimmer {
-    from {
-      background-position: 200% 0;
+  @layer base {
+    * {
+      border-color: var(--border);
     }
-    to {
-      background-position: -200% 0;
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      scroll-behavior: smooth;
+      font-family: var(--font-inter), sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
   }
-}
 

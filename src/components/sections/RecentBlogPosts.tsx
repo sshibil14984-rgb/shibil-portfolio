@@ -70,6 +70,7 @@ export default function RecentBlogPosts({ data }: { data: BlogPostData[] }) {
                 <Link
                   href={`/blog/${post.slug}`}
                   className="text-foreground text-sm font-bold flex items-center gap-1 group/btn"
+                  aria-label={`Read more about ${post.title}`}
                 >
                   Read More{" "}
                   <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />

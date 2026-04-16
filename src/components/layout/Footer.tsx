@@ -24,18 +24,21 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-muted border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600/30 transition-all duration-300"
+                aria-label="Connect on LinkedIn"
               >
                 <Share2 className="w-4 h-4" />
               </a>
               <a 
                 href="#" 
                 className="p-2 rounded-full bg-muted border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600/30 transition-all duration-300"
+                aria-label="View Portfolio Website"
               >
                 <Globe className="w-4 h-4" />
               </a>
               <a 
                 href="#" 
                 className="p-2 rounded-full bg-muted border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600/30 transition-all duration-300"
+                aria-label="View Instagram Profile"
               >
                 <Camera className="w-4 h-4" />
               </a>

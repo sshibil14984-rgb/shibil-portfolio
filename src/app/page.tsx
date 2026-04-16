@@ -1,13 +1,5 @@
 import { Suspense } from "react";
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import CaseStudies from "@/components/sections/CaseStudies";
-import Experience from "@/components/sections/Experience";
-import Certificates from "@/components/sections/Certificates";
-import RecentBlogPosts from "@/components/sections/RecentBlogPosts";
-import Skills from "@/components/sections/Skills";
-import Contact from "@/components/sections/Contact";
+import dynamic from "next/dynamic";
 import { db } from "@/lib/db";
 import { projects, services, experiences, blogPosts, certificates, skills } from "@/lib/schema";
 import { seed } from "@/lib/seed";
@@ -20,6 +12,16 @@ import {
   CertificateSkeleton, 
   SkillsSkeleton 
 } from "@/components/sections/SectionSkeletons";
+
+const Hero = dynamic(() => import("@/components/sections/Hero"), { ssr: true });
+const About = dynamic(() => import("@/components/sections/About"), { ssr: true });
+const Services = dynamic(() => import("@/components/sections/Services"));
+const CaseStudies = dynamic(() => import("@/components/sections/CaseStudies"));
+const Experience = dynamic(() => import("@/components/sections/Experience"));
+const Certificates = dynamic(() => import("@/components/sections/Certificates"));
+const RecentBlogPosts = dynamic(() => import("@/components/sections/RecentBlogPosts"));
+const Skills = dynamic(() => import("@/components/sections/Skills"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 async function ServicesSection() {
   const data = await db.select().from(services).orderBy(desc(services.createdAt));
