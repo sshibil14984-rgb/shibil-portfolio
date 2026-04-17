@@ -16,13 +16,13 @@ import {
   SkillsSkeleton 
 } from "@/components/sections/SectionSkeletons";
 
-const Services = dynamic(() => import("@/components/sections/Services"), { ssr: false });
-const CaseStudies = dynamic(() => import("@/components/sections/CaseStudies"), { ssr: false });
-const Experience = dynamic(() => import("@/components/sections/Experience"), { ssr: false });
-const Certificates = dynamic(() => import("@/components/sections/Certificates"), { ssr: false });
-const RecentBlogPosts = dynamic(() => import("@/components/sections/RecentBlogPosts"), { ssr: false });
-const Skills = dynamic(() => import("@/components/sections/Skills"), { ssr: false });
-const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
+const Services = dynamic(() => import("@/components/sections/Services"));
+const CaseStudies = dynamic(() => import("@/components/sections/CaseStudies"));
+const Experience = dynamic(() => import("@/components/sections/Experience"));
+const Certificates = dynamic(() => import("@/components/sections/Certificates"));
+const RecentBlogPosts = dynamic(() => import("@/components/sections/RecentBlogPosts"));
+const Skills = dynamic(() => import("@/components/sections/Skills"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 async function ServicesSection() {
   const data = await db.select().from(services).orderBy(desc(services.createdAt));

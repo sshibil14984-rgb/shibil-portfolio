@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
-import BookOpen from "lucide-react/dist/esm/icons/book-open";
+import { ArrowRight, BookOpen } from "lucide-react";
 
 // In a real environment, you'd fetch this from your internal MDX library.
 // For now, I'll mock the top posts to ensure the homepage UI is complete.
