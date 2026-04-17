@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { db } from "@/lib/db";
-import { projects, services, experiences, blogPosts, certificates, skills } from "@/lib/schema";
+import { projects, services, experiences, blogPosts, certificates, skills, profile } from "@/lib/schema";
 import { seed } from "@/lib/seed";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import InViewSection from "@/components/common/InViewSection";
@@ -58,10 +58,13 @@ export default async function Home() {
   // Seed initial data if DB is empty - this happens on server once
   await seed();
 
+  const profileData = await db.select().from(profile).where(eq(profile.id, "me")).limit(1);
+  const profileInfo = profileData[0] || null;
+
   return (
     <main className="min-h-screen bg-background">
-      <Hero />
-      <About />
+      <Hero profile={profileInfo} />
+      <About profile={profileInfo} />
       
       <InViewSection fallback={<ServiceSkeleton />}>
         <Suspense fallback={<ServiceSkeleton />}>

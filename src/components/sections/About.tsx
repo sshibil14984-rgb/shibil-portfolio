@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function About() {
+export default function About({ profile }: { profile: any }) {
+  const bioParagraphs = profile?.bio?.split('\n\n') || [
+    "As a Digital Marketing Executive with a background in SEO, SEM, and SMM, I specialize in creating data-driven campaigns that provide measurable results. My expertise lies in helping brands enhance their online visibility and ROI through research-backed strategies.",
+    "From coordinating complex SEO strategies to executing targeted Meta and Google Ads, my focus is always on continuous improvement and staying updated with the latest digital trends. I build user-friendly websites that aren't just visually appealing but optimized for real-world conversions.",
+    "Currently, I leverage tools like Google Analytics and keyword analysis to help businesses in Kerala and beyond grow their digital footprint. When I'm not optimizing campaigns, I'm exploring new ways to bridge the gap between business goals and user needs."
+  ];
+
   return (
     <section id="about" className="py-24 bg-background border-t border-border relative overflow-hidden">
       {/* Background Glow - Only in dark mode for clarity */}
@@ -20,27 +26,12 @@ export default function About() {
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground">About Me</h2>
             <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
-              <p>
-                As a Digital Marketing Executive with a background in SEO, SEM, and SMM, I
-                specialize in creating data-driven campaigns that provide measurable results. My
-                expertise lies in helping brands enhance their online visibility and ROI through
-                research-backed strategies.
-              </p>
-              <p>
-                From coordinating complex SEO strategies to executing targeted Meta and Google Ads,
-                my focus is always on continuous improvement and staying updated with the latest
-                digital trends. I build user-friendly websites that aren't just visually appealing
-                but optimized for real-world conversions.
-              </p>
-              <p>
-                Currently, I leverage tools like Google Analytics and keyword analysis to help
-                businesses in Kerala and beyond grow their digital footprint. When I'm not
-                optimizing campaigns, I'm exploring new ways to bridge the gap between business
-                goals and user needs.
-              </p>
+              {bioParagraphs.map((p: string, i: number) => (
+                <p key={i}>{p}</p>
+              ))}
               <div className="pt-4 flex flex-col gap-3 font-mono text-sm uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                <p>📍 Malappuram, Kerala, India</p>
-                <p>🎓 Diploma in Digital Marketing, Westberg International</p>
+                <p>📍 {profile?.location || "Malappuram, Kerala, India"}</p>
+                <p>🎓 {profile?.education || "Diploma in Digital Marketing, Westberg International"}</p>
               </div>
             </div>
           </motion.div>
@@ -55,7 +46,7 @@ export default function About() {
           >
             {/* No gradient overlay for high clarity */}
             <Image
-              src="/image.png"
+              src="/shibil-profile.png"
               alt="Shibil S - Digital Marketing Specialist"
               fill
               className="object-cover object-center"

@@ -76,11 +76,18 @@ const personSchema: WithContext<Person> = {
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { FramerLazyProvider } from "@/components/providers/FramerLazyProvider";
 
-export default function RootLayout({
+import { db } from "@/lib/db";
+import { profile } from "@/lib/schema";
+import { eq } from "drizzle-orm";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const profileData = await db.select().from(profile).where(eq(profile.id, "me")).limit(1);
+  const profileInfo = profileData[0] || null;
+
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
@@ -98,9 +105,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FramerLazyProvider>
-            <Navbar />
+            <Navbar profile={profileInfo} />
             {children}
-            <Footer />
+            <Footer profile={profileInfo} />
           </FramerLazyProvider>
         </ThemeProvider>
       </body>

@@ -1,10 +1,10 @@
 import { db } from "@/lib/db";
 export const dynamic = "force-dynamic";
-import { projects, services, experiences, blogPosts, certificates, skills } from "@/lib/schema";
+import { projects, services, experiences, blogPosts, certificates, skills, profile } from "@/lib/schema";
 import { logout } from "@/actions/auth";
 import { LogOut } from "lucide-react";
 import AdminContent from "./AdminContent";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 export default async function AdminPage() {
   const [
@@ -14,6 +14,7 @@ export default async function AdminPage() {
     blogPostsData,
     certificatesData,
     skillsData,
+    profileData,
   ] = await Promise.all([
     db.select().from(projects).orderBy(desc(projects.createdAt)),
     db.select().from(services).orderBy(desc(services.createdAt)),
@@ -21,6 +22,7 @@ export default async function AdminPage() {
     db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt)),
     db.select().from(certificates).orderBy(desc(certificates.createdAt)),
     db.select().from(skills).orderBy(desc(skills.createdAt)),
+    db.select().from(profile).where(eq(profile.id, "me")).limit(1),
   ]);
 
   const allData = {
@@ -30,6 +32,7 @@ export default async function AdminPage() {
     blogPosts: blogPostsData,
     certificates: certificatesData,
     skills: skillsData,
+    profile: profileData[0] || null,
   };
 
   return (

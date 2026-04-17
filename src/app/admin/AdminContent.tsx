@@ -13,7 +13,8 @@ import {
   Trash2,
   Pencil,
   X,
-  List
+  List,
+  User
 } from "lucide-react";
 import { 
   createProject, deleteProject, updateProject 
@@ -33,8 +34,9 @@ import {
 import { 
   createSkill, deleteSkill, updateSkill 
 } from "@/actions/skill";
+import { updateProfile } from "@/actions/profile";
 
-type Section = "projects" | "services" | "experience" | "blog" | "certificates" | "skills";
+type Section = "projects" | "services" | "experience" | "blog" | "certificates" | "skills" | "profile";
 
 interface AdminContentProps {
   data: {
@@ -44,6 +46,7 @@ interface AdminContentProps {
     blogPosts: any[];
     certificates: any[];
     skills: any[];
+    profile: any;
   };
 }
 
@@ -59,6 +62,7 @@ export default function AdminContent({ data }: AdminContentProps) {
     { id: "blog", label: "Blog", icon: <FileText className="w-4 h-4" /> },
     { id: "certificates", label: "Certificates", icon: <Award className="w-4 h-4" /> },
     { id: "skills", label: "Skills", icon: <Zap className="w-4 h-4" /> },
+    { id: "profile", label: "Profile", icon: <User className="w-4 h-4" /> },
   ];
 
   const handleEdit = (item: any) => {
@@ -206,6 +210,10 @@ export default function AdminContent({ data }: AdminContentProps) {
                 list={<DataList data={data.skills} onDelete={(id) => handleDelete(id, deleteSkill, "skill")} onEdit={handleEdit} type="skill" />}
               />
             )}
+            {activeSegment === "profile" && (
+              <ProfileSection profile={data.profile} isPending={isPending} onUpdate={updateProfile} />
+            )}
+          </motion.div>
           </motion.div>
         </AnimatePresence>
       </main>
@@ -489,5 +497,87 @@ function SkillForm({ item, onSubmit, isPending }: { item: any; onSubmit: (fd: Fo
         {isPending ? "Processing..." : item ? "Update Skill" : "Sync Skill Set"}
       </button>
     </form>
+  );
+}
+
+function ProfileSection({ profile, isPending, onUpdate }: { profile: any; isPending: boolean; onUpdate: (fd: FormData) => Promise<any> }) {
+  const handleProfileSubmit = async (formData: FormData) => {
+    const result = await onUpdate(formData);
+    if (result.success) {
+      alert("Profile updated successfully.");
+    } else {
+      alert(result.error || "Failed to update profile.");
+    }
+  };
+
+  return (
+    <div className="bg-white border border-zinc-200 rounded-lg shadow-sm">
+      <div className="px-6 py-4 border-b border-zinc-200 bg-zinc-50">
+        <h2 className="text-base font-bold text-zinc-900">Edit Portfolio Profile</h2>
+      </div>
+      <div className="p-6">
+        <form action={handleProfileSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Full Name</label>
+              <input name="name" defaultValue={profile?.name} required className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Professional Role</label>
+              <input name="role" defaultValue={profile?.role} required className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Main Headline</label>
+              <input name="headline" defaultValue={profile?.headline} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Sub Headline</label>
+              <input name="subHeadline" defaultValue={profile?.subHeadline} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5 md:col-span-2">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">About / Bio</label>
+              <textarea name="bio" defaultValue={profile?.bio} rows={6} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Location</label>
+              <input name="location" defaultValue={profile?.location} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Education Summary</label>
+              <input name="education" defaultValue={profile?.education} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Contact Email</label>
+              <input name="email" defaultValue={profile?.email} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Contact Phone</label>
+              <input name="phone" defaultValue={profile?.phone} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">LinkedIn URL</label>
+              <input name="linkedin" defaultValue={profile?.linkedin} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">GitHub URL</label>
+              <input name="github" defaultValue={profile?.github} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Resume File URL</label>
+              <input name="resumeUrl" defaultValue={profile?.resumeUrl} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Profile Image URL</label>
+              <input name="profileImageUrl" defaultValue={profile?.profileImageUrl} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            </div>
+          </div>
+          <div className="pt-4 border-t border-zinc-100 flex justify-end">
+            <button disabled={isPending} className="bg-[#0073BB] text-white font-bold px-8 py-2.5 rounded-md hover:bg-[#005c96] transition-all shadow-sm active:translate-y-[1px] disabled:opacity-50">
+              {isPending ? "Saving Changes..." : "Save Profile Changes"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }

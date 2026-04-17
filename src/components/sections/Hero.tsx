@@ -12,7 +12,12 @@ import {
   Download,
 } from "lucide-react";
 
-export default function Hero() {
+export default function Hero({ profile }: { profile: any }) {
+  const name = profile?.name || "Shibil S";
+  const role = profile?.role || "Best Digital Marketing Strategist in Kerala";
+  const headline = profile?.headline || "I Help Businesses Turn Ads Into Predictable Revenue";
+  const subHeadline = profile?.subHeadline || "Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM. I create data-driven campaigns that improve online visibility, generate qualified leads, and increase ROI.";
+
   return (
     <section className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden">
       {/* Background Gradient - Hidden in light mode to prevent "foggy" feel */}
@@ -26,23 +31,18 @@ export default function Hero() {
           className="transform-gpu"
         >
           <span className="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-sm font-medium tracking-wide mb-4 border border-blue-500/20 uppercase tracking-widest">
-            Shibil S
+            {name}
           </span>
           <p className="text-xl md:text-2xl font-medium text-muted-foreground mb-6 font-mono">
-            Best Digital Marketing Strategist in Kerala
+            {profile?.subHeadline || "Best Digital Marketing Strategist in Kerala"}
           </p>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-foreground">
-            I Help Businesses Turn Ads <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-500">
-              Into Predictable Revenue
-            </span>
+            {headline}
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM. I create
-            data-driven campaigns that improve online visibility, generate qualified leads, and
-            increase ROI.
+            {profile?.bio?.split('\n')[0] || "Results-driven Digital Marketing Executive specializing in SEO, SEM, and SMM."}
           </p>
         </motion.div>
 

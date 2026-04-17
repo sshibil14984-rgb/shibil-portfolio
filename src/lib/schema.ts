@@ -61,3 +61,21 @@ export const skills = pgTable("skills", {
   skillsList: text("skills_list").notNull(), // Comma separated
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+export const profile = pgTable("profile", {
+  id: text("id").primaryKey(), // We'll use a constant ID like 'me'
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  headline: text("headline"),
+  subHeadline: text("sub_headline"),
+  bio: text("bio"),
+  location: text("location"),
+  education: text("education"),
+  email: text("email"),
+  phone: text("phone"),
+  linkedin: text("linkedin"),
+  github: text("github"),
+  resumeUrl: text("resume_url"),
+  profileImageUrl: text("profile_image_url"),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});

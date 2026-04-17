@@ -2,7 +2,9 @@ import Link from "next/link";
 import { UserCog } from "lucide-react";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
 
-export default function Navbar() {
+export default function Navbar({ profile }: { profile: any }) {
+  const name = profile?.name || "Shibil S";
+  
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -10,9 +12,9 @@ export default function Navbar() {
           <Link 
             href="/" 
             className="text-xl font-bold tracking-tighter text-foreground"
-            aria-label="Return to Shibil S Portfolio Homepage"
+            aria-label={`Return to ${name} Portfolio Homepage`}
           >
-            Shibil <span className="text-blue-500">S</span>
+            {name.split(" ")[0]} <span className="text-blue-500">{name.split(" ")[1] || ""}</span>
           </Link>
         </div>
 

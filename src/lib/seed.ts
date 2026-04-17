@@ -1,7 +1,29 @@
 import { db } from "./db";
-import { projects, services, experiences, blogPosts, certificates, skills } from "./schema";
+import { projects, services, experiences, blogPosts, certificates, skills, profile } from "./schema";
 
 export async function seed() {
+  // Check if already seeded with profile
+  const existingProfile = await db.select().from(profile);
+  if (existingProfile.length === 0) {
+    console.log("Seeding profile...");
+    await db.insert(profile).values({
+      id: "me",
+      name: "Shibil S",
+      role: "Digital Marketing Specialist",
+      headline: "I Help Businesses Turn Ads Into Predictable Revenue",
+      subHeadline: "Best Digital Marketing Strategist in Kerala",
+      bio: "As a Digital Marketing Executive with a background in SEO, SEM, and SMM, I specialize in creating data-driven campaigns that provide measurable results. My expertise lies in helping brands enhance their online visibility and ROI through research-backed strategies.\n\nFrom coordinating complex SEO strategies to executing targeted Meta and Google Ads, my focus is always on continuous improvement and staying updated with the latest digital trends. I build user-friendly websites that aren't just visually appealing but optimized for real-world conversions.\n\nCurrently, I leverage tools like Google Analytics and keyword analysis to help businesses in Kerala and beyond grow their digital footprint. When I'm not optimizing campaigns, I'm exploring new ways to bridge the gap between business goals and user needs.",
+      location: "Malappuram, Kerala, India",
+      education: "Diploma in Digital Marketing, Westberg International",
+      email: "sshibil14954@gmail.com",
+      phone: "+918590658417",
+      linkedin: "https://linkedin.com/in/shibil-s-433000370",
+      github: "",
+      resumeUrl: "/SHIBIL resume.pdf",
+      profileImageUrl: "/shibil-profile.png",
+    });
+  }
+
   // Check if already seeded with at least 6 services
   const existing = await db.select().from(services);
   if (existing.length >= 6) return;

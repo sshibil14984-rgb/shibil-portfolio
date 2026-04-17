@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { Share2, Globe, Camera, Mail, MapPin, Phone } from "lucide-react";
 
-export default function Footer() {
+export default function Footer({ profile }: { profile: any }) {
   const currentYear = new Date().getFullYear();
+  const name = profile?.name || "Shibil S";
+  const email = profile?.email || "sshibil14954@gmail.com";
+  const phone = profile?.phone || "+91 8590658417";
+  const linkedin = profile?.linkedin || "https://linkedin.com/in/shibil-s-433000370";
 
   return (
     <footer className="bg-background border-t border-border pt-20 pb-10 overflow-hidden relative">
@@ -14,38 +18,35 @@ export default function Footer() {
               <Link 
                 href="/" 
                 className="text-2xl font-bold tracking-tighter text-foreground"
-                aria-label="Return to Shibil S Portfolio Homepage"
+                aria-label={`Return to ${name} Portfolio Homepage`}
               >
-                Shibil <span className="text-blue-500">S</span>
+                {name.split(" ")[0]} <span className="text-blue-500">{name.split(" ")[1] || ""}</span>
               </Link>
               <p className="mt-4 text-muted-foreground text-sm leading-relaxed">
-                Expert Digital Marketing Strategist specializing in scaling businesses through data-driven SEO, SEM, and performance marketing systems.
+                {profile?.role || "Expert Digital Marketing Strategist"} specializing in scaling businesses through data-driven SEO, SEM, and performance marketing systems.
               </p>
             </div>
             <div className="flex items-center gap-4">
               <a 
-                href="https://linkedin.com/in/shibil-s-433000370" 
+                href={linkedin} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-muted border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600/30 transition-all duration-300"
-                aria-label="Connect with Shibil S on LinkedIn"
+                aria-label={`Connect with ${name} on LinkedIn`}
               >
                 <Share2 className="w-4 h-4" />
               </a>
-              <a 
-                href="#" 
-                className="p-2 rounded-full bg-muted border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600/30 transition-all duration-300"
-                aria-label="View Portfolio Website"
-              >
-                <Globe className="w-4 h-4" />
-              </a>
-              <a 
-                href="#" 
-                className="p-2 rounded-full bg-muted border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600/30 transition-all duration-300"
-                aria-label="Visit Shibil's Instagram Profile"
-              >
-                <Camera className="w-4 h-4" />
-              </a>
+              {profile?.github && (
+                <a 
+                  href={profile.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-muted border border-border text-muted-foreground hover:text-blue-600 hover:border-blue-600/30 transition-all duration-300"
+                  aria-label={`Visit ${name}'s GitHub Profile`}
+                >
+                  <Share2 className="w-4 h-4 rotate-180" /> {/* Using rotate-180 to differentiate from share as a placeholder for github icon if needed, or just Share2 is fine if we don't have Github icon imported */}
+                </a>
+              )}
             </div>
           </div>
 
@@ -93,18 +94,18 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                <span className="text-sm text-muted-foreground">Kerala, India <br/> Available Worldwide</span>
+                <span className="text-sm text-muted-foreground">{profile?.location || "Kerala, India"} <br/> Available Worldwide</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-blue-500 shrink-0" />
-                <a href="mailto:sshibil14954@gmail.com" className="text-sm text-muted-foreground hover:text-blue-500 transition-colors">
-                  sshibil14954@gmail.com
+                <a href={`mailto:${email}`} className="text-sm text-muted-foreground hover:text-blue-500 transition-colors">
+                  {email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-blue-500 shrink-0" />
-                <a href="tel:+918590658417" className="text-sm text-muted-foreground hover:text-blue-500 transition-colors">
-                  +91 8590658417
+                <a href={`tel:${phone.replace(/\s+/g, '')}`} className="text-sm text-muted-foreground hover:text-blue-500 transition-colors">
+                  {phone}
                 </a>
               </li>
             </ul>
@@ -122,7 +123,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs text-muted-foreground text-center md:text-left">
-            &copy; {currentYear} Shibil S. All rights reserved. Registered Digital Marketing Professional.
+            &copy; {currentYear} {name}. All rights reserved. Registered Digital Marketing Professional.
           </p>
           <div className="flex items-center gap-6 text-xs text-muted-foreground">
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
