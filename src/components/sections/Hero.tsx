@@ -28,9 +28,9 @@ export default function Hero() {
           <span className="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-sm font-medium tracking-wide mb-4 border border-blue-500/20 uppercase tracking-widest">
             Shibil S
           </span>
-          <h2 className="text-xl md:text-2xl font-medium text-muted-foreground mb-6 font-mono">
+          <p className="text-xl md:text-2xl font-medium text-muted-foreground mb-6 font-mono">
             Best Digital Marketing Strategist in Kerala
-          </h2>
+          </p>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-foreground">
             I Help Businesses Turn Ads <br className="hidden md:block" />

@@ -127,3 +127,18 @@
     }
   }
 
+/* High Performance Sections */
+.section-optimize {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
+/* GPU promotion for all complex components */
+.gpu-promote {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+

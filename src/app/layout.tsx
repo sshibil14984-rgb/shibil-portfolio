@@ -85,6 +85,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://www.shibil.xyz" />
+        <link rel="dns-prefetch" href="https://www.shibil.xyz" />
+        <link rel="preconnect" href="https://wa.me" />
+        <link rel="dns-prefetch" href="https://wa.me" />
         <JsonLd schema={personSchema} />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
