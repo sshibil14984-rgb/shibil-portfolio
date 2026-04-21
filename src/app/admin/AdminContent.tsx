@@ -214,7 +214,6 @@ export default function AdminContent({ data }: AdminContentProps) {
               <ProfileSection profile={data.profile} isPending={isPending} onUpdate={updateProfile} />
             )}
           </motion.div>
-          </motion.div>
         </AnimatePresence>
       </main>
     </div>
