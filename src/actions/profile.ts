@@ -4,6 +4,9 @@ import { db } from "@/lib/db";
 import { profile } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { join } from "path";
+import { writeFile, mkdir } from "fs/promises";
+import { existsSync } from "fs";
 
 export async function getProfile() {
   try {
@@ -17,6 +20,26 @@ export async function getProfile() {
 
 export async function updateProfile(formData: FormData) {
   try {
+    let profileImageUrl = formData.get("profileImageUrl") as string;
+    const profileImageFile = formData.get("profileImageFile") as File;
+
+    if (profileImageFile && profileImageFile.size > 0) {
+      const bytes = await profileImageFile.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      
+      const filename = `${Date.now()}-${profileImageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+      const uploadDir = join(process.cwd(), "public", "uploads");
+      
+      if (!existsSync(uploadDir)) {
+        await mkdir(uploadDir, { recursive: true });
+      }
+      
+      const filepath = join(uploadDir, filename);
+      await writeFile(filepath, buffer);
+      
+      profileImageUrl = `/uploads/${filename}`;
+    }
+
     const data = {
       name: formData.get("name") as string,
       role: formData.get("role") as string,
@@ -30,7 +53,7 @@ export async function updateProfile(formData: FormData) {
       linkedin: formData.get("linkedin") as string,
       github: formData.get("github") as string,
       resumeUrl: formData.get("resumeUrl") as string,
-      profileImageUrl: formData.get("profileImageUrl") as string,
+      profileImageUrl: profileImageUrl,
       updatedAt: new Date(),
     };
 

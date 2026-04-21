@@ -565,9 +565,15 @@ function ProfileSection({ profile, isPending, onUpdate }: { profile: any; isPend
               <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Resume File URL</label>
               <input name="resumeUrl" defaultValue={profile?.resumeUrl} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
             </div>
-            <div className="space-y-1.5">
-              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Profile Image URL</label>
-              <input name="profileImageUrl" defaultValue={profile?.profileImageUrl} className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+            <div className="space-y-1.5 md:col-span-2">
+              <label className="text-[11px] font-bold uppercase tracking-tight text-zinc-500">Profile Image</label>
+              <div className="flex flex-col gap-3">
+                <input type="file" name="profileImageFile" accept="image/*" className="w-full bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" />
+                <div className="flex items-center gap-2">
+                   <span className="text-xs text-zinc-400">Or use URL:</span>
+                   <input name="profileImageUrl" defaultValue={profile?.profileImageUrl} className="flex-1 bg-white border border-zinc-300 rounded-md px-3 py-2 text-sm text-black focus:border-[#0073BB] focus:ring-1 focus:ring-[#0073BB] outline-none transition-all" placeholder="https://..." />
+                </div>
+              </div>
             </div>
           </div>
           <div className="pt-4 border-t border-zinc-100 flex justify-end">
